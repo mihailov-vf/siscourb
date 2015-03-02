@@ -1,0 +1,16 @@
+{
+    "name": "vendor/sicourb",
+    "description": "Descrição do projeto sicourb.",
+    "authors": [
+        {
+            "name": "Mihailov Vasilievic Filho",
+            "email": "mihailov.vf@gmail.com"
+        }
+    ],
+    "require": {
+        "phpunit/phpunit": "4.5.0",
+        "slim/slim": "2.6.0",
+        "slim/views": "dev-master",
+        "slim/strong": "dev-master"
+    }
+}

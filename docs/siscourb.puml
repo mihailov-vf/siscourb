@@ -1,0 +1,10 @@
+@startuml
+:Usuário:
+:Admin:
+:Gestor:
+
+Usuário <|-- Admin
+Usuário <|-- Gestor
+
+(Cadastro de usuário)
+@enduml
