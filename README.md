@@ -11,3 +11,6 @@ pelas entidades responsáveis.
 
 Projeto desenvolvido com o apoio do programa Laboratório de Computação Aplicada (LCA) 
 da Universidade Guarulhos.
+
+---
+
