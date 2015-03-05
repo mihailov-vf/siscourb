@@ -1,5 +1,5 @@
-Lista de requisitos
-===================
+Requisitos funcionais
+=====================
 
 Cadastro de usuários
 --------------------
@@ -18,7 +18,7 @@ Cadastro de um cidadão para utilizar todas as funcionalidades do sistema
 
 Cadastro de Entidades
 ---------------------
-Órgãos governamentais e empresas prestadoras de serviços públicos
+Entidades são os orgãos governamentais e empresas prestadoras de serviços públicos
 
 - Situação 1:
         O administrador do sistema adciona uma nova entidade
@@ -30,7 +30,7 @@ Cadastro de Entidades
 
 Cadastro de Categorias
 ----------------------
-Categorias de classificação de problemas ou necessidades, utilizadas para localização rápida dos assuntos
+Categorias de classificação de problemas ou necessidades, utilizadas para identificação rápida dos assuntos
 
 - Situação 1:
         Administrador realiza cadastro de categorias.
@@ -43,24 +43,21 @@ Categorias de classificação de problemas ou necessidades, utilizadas para loca
 
 ---
 
-Cadastro de Problemas
----------------------
+Cadastro de Necessidades
+------------------------
+Cadastro de situações que caracterizam um problema ou uma melhoria
 
+- Situação 1:
+        Administrador cadastra os problemas e necessidades básicas para o funcionamento do sistema
 
----
-
-Cadastro de Serviços
---------------------
-
----
-
-Cadastro de Logradouros
------------------------
+- Situação 2:
+        Usuário atribui um novo tipo de problema a um chamado
 
 ---
 
 Registros de Chamados (Problemas ou Melhorias)
 ----------------------------------------------
+Registro de um chamado com um problema ou necessidade informado por um usuário
 
 ---
 
@@ -76,3 +73,17 @@ Decisão de envios de Relatório
 
 Visualização de dados amigável
 ------------------------------
+- Visualização através de mapas
+
+- Representação de dados e estatística de chamados resolvidos através de gráficos interativos
+
+---
+
+Requisitos não-funcionais
+=========================
+
+- Aplicar licença de software livre
+
+- Deverá ser acessível a partir qualquer dispositivo com internet
+
+- Desenvolvido com PHP

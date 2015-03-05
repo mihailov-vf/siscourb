@@ -1,0 +1,26 @@
+@startuml
+:Usuário:
+:Admin:
+:Gestor:
+:Autenticador: <<Serviço>>
+
+Usuário <|-- Admin
+Usuário <|-- Gestor
+
+Usuário -- (Login)
+(Autenticação externa) .> (Login) : extends
+(Autenticação externa) -- Autenticador
+
+Usuário -- (Cadastro de usuário)
+(Cadastro de usuário) <.(Cadastro de Gestor)  : extends
+Gestor -- (Cadastro de Gestor)
+
+Admin -- (Cadastro de Entidade)
+Gestor -- (Cadastro de Entidade)
+
+Admin -- (Cadastro de Categorias)
+Admin -- (Cadastro de Necessidades)
+
+Usuário -- (Registrar chamado)
+
+@enduml

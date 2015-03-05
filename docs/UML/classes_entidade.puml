@@ -1,0 +1,14 @@
+@startuml
+class Usuario
+class Entidade
+class Categoria
+class Necessidade
+class Chamado
+
+Categoria "1..*" o-- "0..*" Necessidade
+
+Usuario -- Chamado
+Chamado -- Categoria
+Chamado -- Necessidade
+
+@enduml
