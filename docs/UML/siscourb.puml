@@ -7,13 +7,17 @@
 Usuário <|-- Admin
 Usuário <|-- Gestor
 
-Usuário -- (Login)
+Usuário --- (Login)
 (Autenticação externa) .> (Login) : extends
 (Autenticação externa) -- Autenticador
 
+(Cadastro Externo) .> (Autenticação externa) : includes
+
 Usuário -- (Cadastro de usuário)
+Usuário -- (Cadastro Externo)
+
 (Cadastro de usuário) <.(Cadastro de Gestor)  : extends
-Gestor -- (Cadastro de Gestor)
+Usuário -- (Cadastro de Gestor)
 
 Admin -- (Cadastro de Entidade)
 Gestor -- (Cadastro de Entidade)

@@ -7,8 +7,7 @@ class Chamado
 
 Categoria "1..*" o-- "0..*" Necessidade
 
-Usuario -- Chamado
-Chamado -- Categoria
-Chamado -- Necessidade
+Usuario "1" -- "0..*" Chamado
+Chamado "1..*"  -- "1" Necessidade
 
 @enduml
