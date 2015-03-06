@@ -1,6 +1,6 @@
 <?php
 
-/*
+/* 
  * Copyright (C) 2015 Mihailov Vasilievic Filho <mihailov.vf@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,8 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * @author Mihailov Vasilievic Filho <mihailov.vf@gmail.com>
- */
+define('REQUEST_MICROTIME', microtime(true)); 
+// Setup autoloading
+require 'vendor/autoload.php';
 
-require '../bootstrap.php';
+require 'config/doctrine.config.php';

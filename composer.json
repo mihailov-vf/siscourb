@@ -11,6 +11,8 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
+        "doctrine/dbal": "~2.5",
+        "doctrine/orm": "~2.4",
         "slim/slim": "2.6.0",
         "slim/views": "dev-master",
         "slim/strong": "dev-master"
