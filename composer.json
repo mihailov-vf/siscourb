@@ -10,6 +10,11 @@
     ],
     "minimum-stability": "stable",
     "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "Siscourb\\User\\": "module/User/src"
+        }
+    },
     "require": {
         "doctrine/dbal": "~2.5",
         "doctrine/orm": "~2.4",
