@@ -1,6 +1,7 @@
 SisCoUrb
 ========
 ##Sistema de Colaboração Urbana
+[![Build Status](https://travis-ci.org/mihailov-vf/siscourb.svg)](https://travis-ci.org/mihailov-vf/siscourb)
 
 Projeto criado com o objetivo de possibilitar uma maior interação entre a 
 população, órgãos públicos e empresas prestadoras de serviços públicos. 

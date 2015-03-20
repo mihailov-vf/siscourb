@@ -2,3 +2,5 @@
 /composer.lock
 /nbproject/
 /bower_components/
+/data/
+/*/data/

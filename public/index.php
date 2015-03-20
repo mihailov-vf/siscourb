@@ -1,7 +1,7 @@
 <?php
 
 /* 
- * Copyright (C) 2015 Mihailov Vasilievic Filho <mihailov.vf@gmail.com>
+ * Copyright (C) 2015 Mihailov Vasilievic Filho
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,5 +19,6 @@
 
 chdir(dirname(__DIR__));
 
-require 'bootstrap.php';
-require 'app.php';
+define('REQUEST_MICROTIME', microtime(true)); 
+// Setup autoloading
+require 'vendor/autoload.php';
