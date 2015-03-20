@@ -17,8 +17,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-chdir(dirname(__DIR__));
-
 define('REQUEST_MICROTIME', microtime(true)); 
-// Setup autoloading
-require 'vendor/autoload.php';
+
+// define a working directory
+define('APP_PATH', dirname(__DIR__)); // PHP v5.3+
+
+// load
+require APP_PATH . '/vendor/autoload.php';
+
+// init app
+$app = New \SlimController\Slim(array(
+    'templates.path'             => APP_PATH . '/templates',
+    'controller.class_prefix'    => '\\Siscourb',
+    'controller.class_suffix'    => 'Controller',
+    'controller.method_suffix'   => 'Action',
+    'controller.template_suffix' => 'phtml',
+));
+
+$app->addRoutes(array(
+    '/'            => 'User\\Controller\\User:index',
+));
+
+$app->run();
