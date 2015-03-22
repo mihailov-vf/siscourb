@@ -24,10 +24,11 @@ namespace Siscourb\User\Controller;
  *
  * @author Mihailov Vasilievic Filho
  */
-class UserController extends \SlimController\SlimController {
+class UserController extends \SlimController\SlimController
+{
 
-    public function indexAction() {
+    public function indexAction()
+    {
         $this->render('user/index');
     }
-
 }

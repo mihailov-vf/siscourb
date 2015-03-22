@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define('REQUEST_MICROTIME', microtime(true)); 
+define('REQUEST_MICROTIME', microtime(true));
 
 // define a working directory
 define('APP_PATH', dirname(__DIR__)); // PHP v5.3+
@@ -26,7 +26,7 @@ define('APP_PATH', dirname(__DIR__)); // PHP v5.3+
 require APP_PATH . '/vendor/autoload.php';
 
 // init app
-$app = New \SlimController\Slim(array(
+$app = new \SlimController\Slim(array(
     'templates.path'             => APP_PATH . '/templates',
     'controller.class_prefix'    => '\\Siscourb',
     'controller.class_suffix'    => 'Controller',

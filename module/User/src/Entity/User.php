@@ -24,7 +24,8 @@ namespace Siscourb\User\Entity;
  *
  * @author Mihailov Vasilievic Filho
  */
-class User {
+class User
+{
     private $id;
     private $name;
     private $email;
