@@ -19,15 +19,9 @@ class UserControllerTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        
-        $app = new \SlimController\Slim(array(
-            'templates.path'             => '../../../templates',
-            'controller.class_prefix'    => '\\Siscourb',
-            'controller.class_suffix'    => 'Controller',
-            'controller.method_suffix'   => 'Action',
-            'controller.template_suffix' => 'phtml',
-        ));
-        
+        $config = require 'config/application.config.php';
+        $app = new \SlimController\Slim($config);
+
         $this->object = new UserController($app);
     }
 
