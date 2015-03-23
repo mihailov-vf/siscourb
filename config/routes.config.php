@@ -17,16 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-// define a working directory
-chdir(dirname(__DIR__)); // PHP v5.3+
-// load
-require 'vendor/autoload.php';
-
-// init app
-$config = require 'config/application.config.php';
-$app = new \SlimController\Slim($config);
-
-$routes = require 'config/routes.config.php';
-$app->addRoutes($routes);
-
-$app->run();
+return array(
+    '/' => 'User\\Controller\\User:index',
+    '/user/sign-up' => 'User\\Controller\\User:signUp',
+);
