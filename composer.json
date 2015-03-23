@@ -24,6 +24,11 @@
     },
     "require-dev": {
         "phpunit/phpunit": "4.5.0",
-        "behat/behat": "dev-master"
+        "mockery/mockery": "dev-master",
+        "behat/behat": "dev-master",
+        "behat/mink": "~1.6",
+        "behat/mink-extension": "~2.0",
+        "behat/mink-goutte-driver": "*",
+        "behat/mink-selenium2-driver": "*"
     }
 }

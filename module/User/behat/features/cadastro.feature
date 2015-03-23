@@ -7,22 +7,20 @@ Funcionalidade: Cadastro de usuário
   Eu quero me cadastrar
 
   Cenário: Acesso a página de cadastro
-    Quando estou na página principal "/"
-    E clico em "Cadastrar-se"
+    Quando estou na página de entrada
+    E sigo o link "Cadastrar-se"
     Então devo ver "Cadastro de novo usuário"
 
   Cenário: Novo usuário por email
-    Quando acesso a página de cadastro "/user/sign-up"
-    E preencho o campo "User[name]"
-    E preencho o campo "User[email]"
-    E preencho o campo "User[password]"
-    E preencho o campo "User[confirm_password]"
-    E clico em "Confirmar cadastro"
+    Quando Eu vou para "/user/sign-up"
+    E preencho "User[name]" com "Joe"
+    E preencho "User[email]" com "joe@joe.com"
+    E preencho "User[password]" com "Joe"
+    E preencho "User[confirm_password]" com "Joe"
+    E pressiono "Confirmar cadastro"
     Então devo ver "Cadastro realizado com sucesso"
-    E recebo um email de ativação de conta
 
   Cenário: Ativação de email
-    Quando acesso a pagina de ativação "/user/activate/"
-    E com o argumento ""
-    E clico em "Confirmar email"
+    Quando vou para "/user/activate/"
+    E pressiono "Confirmar email"
     Então devo ver "Conta ativada com sucesso"
