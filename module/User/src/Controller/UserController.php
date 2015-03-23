@@ -31,4 +31,9 @@ class UserController extends \SlimController\SlimController
     {
         $this->render('user/index');
     }
+
+    public function signUpAction()
+    {
+        $this->render('user/sign-up');
+    }
 }
