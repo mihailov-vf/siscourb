@@ -48,8 +48,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
              highLowerBound="80" />
         <log type="testdox-html"
              target="./data/log/testdox.html" />
-        <log type="tap" target="php://stdout"/>
-        <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>
+        <log type="coverage-clover" target="build/logs/clover.xml"/>
     </logging>
     
     <listeners>
