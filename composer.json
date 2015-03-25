@@ -12,24 +12,38 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
+            "Siscourb\\Application\\": "module/Application/src",
             "Siscourb\\User\\": "module/User/src"
         }
     },
     "require": {
-        "doctrine/dbal": "~2.5",
-        "doctrine/orm": "~2.4",
-        "slimcontroller/slimcontroller": "0.4.2",
-        "slim/views": "dev-master",
-        "slim/strong": "dev-master"
+        "php": ">=5.4",
+        "zendframework/zendframework": "2.*",
+        "doctrine/doctrine-orm-module": "0.*",
+        "neilime/zf2-twb-bundle": "2.*",
+        "neilime/zf2-assets-bundle": "dev-master",
+        "twitter/bootstrap": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "4.5.0",
         "mockery/mockery": "dev-master",
+        
         "behat/behat": "dev-master",
         "behat/mink": "~1.6",
         "behat/mink-extension": "~2.0",
         "behat/mink-goutte-driver": "*",
         "behat/mink-selenium2-driver": "*",
-        "satooshi/php-coveralls": "dev-master"
+        "satooshi/php-coveralls": "dev-master",
+
+        "zendframework/zftool": "dev-master",
+        "zendframework/zend-developer-tools": "dev-master",
+        "ocramius/ocra-service-manager": "dev-master", 
+        "sensiolabs/security-checker": "dev-master",
+        "san/san-session-toolbar": "dev-master",
+        "snapshotpl/zf-snap-event-debugger": "dev-master",
+        "jhuet/zdt-logger-module": "dev-master",
+        
+        "hounddog/doctrine-data-fixture-module": "dev-master@dev",
+        "doctrine/migrations": "dev-master"
     }
 }
