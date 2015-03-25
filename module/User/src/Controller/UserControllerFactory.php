@@ -19,14 +19,20 @@
 
 namespace Siscourb\User\Controller;
 
-use Zend\Mvc\Controller\AbstractRestfulController;
+use Zend\ServiceManager\FactoryInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
- * Description of UserController
+ * Description of UserControllerFactory
  *
  * @author Mihailov Vasilievic Filho
  */
-class UserController extends AbstractRestfulController
+class UserControllerFactory implements FactoryInterface
 {
-    //put your code here
+    public function createService(ServiceLocatorInterface $controllerManager)
+    {
+        $serviceManager = $controllerManager->getServiceLocator();
+        
+        return new UserController();
+    }
 }
