@@ -38,4 +38,35 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $this->assertObjectHasAttribute('email', $this->object);
         $this->assertObjectHasAttribute('password', $this->object);
     }
+
+    public function testSetAndGetId()
+    {
+        $this->assertNull($this->object->getId());
+        
+        $this->object->setId(1);
+        $this->assertSame(1, $this->object->getId());
+    }
+    
+    public function testSetAndGetName()
+    {
+        $this->assertNull($this->object->getName());
+        
+        $this->object->setName('John');
+        $this->assertSame('John', $this->object->getName());
+    }
+    
+    public function testSetAndGetEmail()
+    {
+        $this->assertNull($this->object->getEmail());
+        
+        $this->object->setEmail('john@john.com');
+        $this->assertSame('john@john.com', $this->object->getEmail());
+    }
+    
+    public function testSetAndGetPassword()
+    {
+        $this->object->setPassword('12345');
+        
+        $this->assertTrue(password_verify('12345', $this->object->getPassword()));
+    }
 }
