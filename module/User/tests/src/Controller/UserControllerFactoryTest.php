@@ -37,13 +37,19 @@ class UserControllerFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function testCreateService()
     {
+        $userMapper = \Mockery::mock('Doctrine\ORM\EntityRepository');
+
         $serviceLocator = \Mockery::mock('Zend\ServiceManager\ServiceManager');
-        
+
+        $serviceLocator = \Mockery::mock('Zend\ServiceManager\ServiceManager');
+        $serviceLocator->shouldReceive('get')
+                ->with('Siscourb\User\Mapper\UserMapper')->once()->andReturn($userMapper);
+
         $controllerManager = \Mockery::mock('Zend\Mvc\Controller\ControllerManager');
         $controllerManager->shouldReceive('getServiceLocator')->once()->andReturn($serviceLocator);
-        
+
         $taskControllerFactory = new UserControllerFactory();
-        /** @var $controllerManager \Zend\Mvc\Controller\ControllerManager */
+
         $this->assertInstanceOf(
             'Siscourb\User\Controller\UserController',
             $taskControllerFactory->createService($controllerManager)

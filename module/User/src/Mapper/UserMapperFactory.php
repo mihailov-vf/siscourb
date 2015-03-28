@@ -17,24 +17,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Siscourb\User\Controller;
+namespace Siscourb\User\Mapper;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
- * Description of UserControllerFactory
+ * Description of UserMapperFactory
  *
  * @author Mihailov Vasilievic Filho
  */
-class UserControllerFactory implements FactoryInterface
+class UserMapperFactory implements FactoryInterface
 {
-    public function createService(ServiceLocatorInterface $controllerManager)
+
+    public function createService(ServiceLocatorInterface $serviceManager)
     {
-        $serviceManager = $controllerManager->getServiceLocator();
-        
-        $userMapper = $serviceManager->get('Siscourb\User\Mapper\UserMapper');
-        
-        return new UserController($userMapper);
+        $entityManager = $serviceManager->get('Doctrine\ORM\EntityManager');
+        return $entityManager->getRepository('Siscourb\User\Entity\User');
     }
 }
