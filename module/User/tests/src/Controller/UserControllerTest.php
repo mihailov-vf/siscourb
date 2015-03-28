@@ -19,10 +19,7 @@ class UserControllerTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $config = require 'config/application.config.php';
-        $app = new \SlimController\Slim($config);
-
-        $this->object = new UserController($app);
+        $this->object = new UserController();
     }
 
     /**
