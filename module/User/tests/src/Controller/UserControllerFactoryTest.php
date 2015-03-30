@@ -40,8 +40,6 @@ class UserControllerFactoryTest extends \PHPUnit_Framework_TestCase
         $userMapper = \Mockery::mock('Doctrine\ORM\EntityRepository');
 
         $serviceLocator = \Mockery::mock('Zend\ServiceManager\ServiceManager');
-
-        $serviceLocator = \Mockery::mock('Zend\ServiceManager\ServiceManager');
         $serviceLocator->shouldReceive('get')
                 ->with('Siscourb\User\Mapper\UserMapper')->once()->andReturn($userMapper);
 
