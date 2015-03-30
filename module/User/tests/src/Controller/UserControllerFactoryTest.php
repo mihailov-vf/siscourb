@@ -46,11 +46,11 @@ class UserControllerFactoryTest extends \PHPUnit_Framework_TestCase
         $controllerManager = \Mockery::mock('Zend\Mvc\Controller\ControllerManager');
         $controllerManager->shouldReceive('getServiceLocator')->once()->andReturn($serviceLocator);
 
-        $taskControllerFactory = new UserControllerFactory();
+        $userControllerFactory = new UserControllerFactory();
 
         $this->assertInstanceOf(
             'Siscourb\User\Controller\UserController',
-            $taskControllerFactory->createService($controllerManager)
+            $userControllerFactory->createService($controllerManager)
         );
     }
 }

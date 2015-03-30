@@ -15,7 +15,7 @@ class UserRepositoryTest extends \PHPUnit_Framework_TestCase
     private $entityManager;
     private $userRepository;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->entityManager = \Mockery::mock('Doctrine\ORM\EntityManager');
 

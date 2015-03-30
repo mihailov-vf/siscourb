@@ -26,15 +26,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
          convertWarningsToExceptions="true"
          stopOnFailure="true"
          verbose="true">
-    <testsuites>
+     <testsuites>
         <testsuite name="User Module Tests">
             <directory>../module/User/tests</directory>
         </testsuite>
-    </testsuites>
+   </testsuites>
     
     <filter>
         <whitelist>
-            <directory suffix=".php">../module/User/src</directory>
+            <directory suffix=".php">../module/*/src</directory>
+            <directory suffix=".php">../module/*/config</directory>
         </whitelist>
     </filter>
 
