@@ -8,6 +8,7 @@ return array(
         'DoctrineModule',
         'DoctrineORMModule',
         'DoctrineDataFixtureModule',
+        'MaglMarkdown',
         
         'Siscourb\Application',
         'Siscourb\User',
