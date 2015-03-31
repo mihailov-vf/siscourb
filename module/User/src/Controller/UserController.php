@@ -43,8 +43,9 @@ class UserController extends AbstractRestfulController
      */
     protected $userForm;
 
-    public function __construct(UserMapper $userMapper)
+    public function __construct(UserMapper $userMapper, UserForm $userForm)
     {
         $this->userMapper = $userMapper;
+        $this->userForm = $userForm;
     }
 }
