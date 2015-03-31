@@ -20,9 +20,13 @@ class UserControllerFactoryTest extends \PHPUnit_Framework_TestCase
         $serviceLocator = \Mockery::mock('Zend\ServiceManager\ServiceManager');
         $serviceLocator->shouldReceive('get')
                 ->with('Siscourb\User\Mapper\UserMapper')->once()->andReturn($userMapper);
+        
+        $formManager = \Mockery::mock('Zend\Form\FormElementManager');
 
         $controllerManager = \Mockery::mock('Zend\Mvc\Controller\ControllerManager');
         $controllerManager->shouldReceive('getServiceLocator')->once()->andReturn($serviceLocator);
+        $serviceLocator->shouldReceive('get')->with('FormElementManager')
+                ->once()->andReturn($formManager);
 
         $userControllerFactory = new UserControllerFactory();
 
