@@ -1,5 +1,38 @@
 <?php
+
 return array(
+    'controllers' => array(
+        'invokables' => array(
+            'Siscourb\Application\Controller\Siscourb' => 'Siscourb\Application\Controller\SiscourbController',
+        ),
+    ),
+    'router' => array(
+        'routes' => array(
+            'siscourb' => array(
+                'type' => 'literal',
+                'options' => array(
+                    'route' => '/',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Siscourb\Application\Controller',
+                        'controller' => 'Siscourb',
+                        'action' => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'about' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => 'about[/]',
+                            'defaults' => array(
+                                'action' => 'about',
+                            )
+                        ),
+                    )
+                )
+            ),
+        )
+    ),
     'view_manager' => array(
         'display_not_found_reason' => true,
         'display_exceptions' => true,
