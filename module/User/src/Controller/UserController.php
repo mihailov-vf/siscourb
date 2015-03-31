@@ -19,6 +19,8 @@
 
 namespace Siscourb\User\Controller;
 
+use Siscourb\User\Form\UserForm;
+use Siscourb\User\Mapper\UserMapper;
 use Zend\Mvc\Controller\AbstractRestfulController;
 
 /**
@@ -28,5 +30,21 @@ use Zend\Mvc\Controller\AbstractRestfulController;
  */
 class UserController extends AbstractRestfulController
 {
-    //put your code here
+
+    /**
+     *
+     * @var UserMapper
+     */
+    protected $userMapper;
+
+    /**
+     *
+     * @var UserForm
+     */
+    protected $userForm;
+
+    public function __construct(UserMapper $userMapper)
+    {
+        $this->userMapper = $userMapper;
+    }
 }
