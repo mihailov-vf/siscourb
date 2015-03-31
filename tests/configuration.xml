@@ -41,14 +41,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
     <logging>
         <log type="coverage-html"
-             target="./data/log/codeCoverage"
+             target="build/logs/coverage"
              charset="UTF-8"
              yui="true"
              highlight="true"
              lowUpperBound="50"
              highLowerBound="80" />
         <log type="testdox-html"
-             target="./data/log/testdox.html" />
+             target="build/logs/testdox.html" />
         <log type="coverage-clover" target="build/logs/clover.xml"/>
     </logging>
     
