@@ -35,6 +35,7 @@ class UserControllerFactory implements FactoryInterface
         $formManager = $serviceManager->get('FormElementManager');
         
         $userMapper = $serviceManager->get('Siscourb\User\Mapper\UserMapper');
+        $userForm = $formManager->get('Siscourb\User\Form\UserForm');
         
         return new UserController($userMapper);
     }
