@@ -48,4 +48,9 @@ class UserController extends AbstractRestfulController
         $this->userMapper = $userMapper;
         $this->userForm = $userForm;
     }
+    
+    public function indexAction()
+    {
+        return array();
+    }
 }

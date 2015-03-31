@@ -8,14 +8,22 @@ namespace Siscourb\User\Controller;
 class UserControllerTest extends \PHPUnit_Framework_TestCase
 {
 
-    public function testConstruct()
+    protected $userController;
+
+    protected function setUp()
     {
         $this->assertClassHasAttribute('userMapper', 'Siscourb\User\Controller\UserController');
         $this->assertClassHasAttribute('userForm', 'Siscourb\User\Controller\UserController');
+
+        $this->userMapper = \Mockery::mock('Siscourb\User\Repository\UserRepository');
+        $this->userForm = \Mockery::mock('Siscourb\User\Form\UserForm');
+
+        $this->userController = new UserController($this->userMapper, $this->userForm);
     }
-    
-    public function testIndexPage()
+
+    public function testIndexAction()
     {
-        
+        $expected = array();
+        $this->assertEquals($expected, $this->userController->indexAction());
     }
 }
