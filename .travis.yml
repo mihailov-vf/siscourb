@@ -19,5 +19,4 @@ script:
   - php vendor/bin/phpunit -c tests/configuration.xml
 
 after_script:
-  - 'echo ''src_dir: module'' >> ./.coveralls.yml'
-  - php vendor/bin/coveralls -v
+  - php vendor/bin/coveralls -v --exclude-no-stmt
