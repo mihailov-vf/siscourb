@@ -32,6 +32,7 @@ class UserControllerFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $controllerManager)
     {
         $serviceManager = $controllerManager->getServiceLocator();
+        $formManager = $serviceManager->get('FormElementManager');
         
         $userMapper = $serviceManager->get('Siscourb\User\Mapper\UserMapper');
         
