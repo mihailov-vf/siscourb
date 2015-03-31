@@ -26,7 +26,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @author Mihailov Vasilievic Filho
  *
- * @ORM\Entity @ORM\Table(name="users")
+ * @ORM\Entity(repositoryClass="Siscourb\User\Repository\UserRepository") @ORM\Table(name="users")
  */
 class User
 {
