@@ -54,6 +54,13 @@ class UserController extends AbstractRestfulController
         $this->userForm->setData($data);
 
         if ($this->userForm->isValid()) {
+            $user = $this->userForm->getData();
+            $this->userMapper->insert($user);
+
+            $this->flashMessenger()->setNamespace('success')
+                    ->addMessage('Usuário cadastrado com sucesso');
+
+            return $this->redirect()->toRoute('user');
         }
 
         return array('form' => $this->userForm);
@@ -66,6 +73,10 @@ class UserController extends AbstractRestfulController
 
     public function registerAction()
     {
+        if ($this->getRequest()->isPost()) {
+            $this->create($this->getRequest()->getPost());
+        }
+        
         $form = $this->userForm;
         return array('form' => $form);
     }

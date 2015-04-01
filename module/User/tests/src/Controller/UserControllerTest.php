@@ -48,4 +48,42 @@ class UserControllerTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $this->userController->create(array()));
     }
 
+    public function testCreateWithValidData()
+    {
+        $this->userMapper->shouldReceive('insert')->once()->andReturn(null);
+
+        $this->userForm->shouldReceive('setData')->once()->andReturn(null);
+        $this->userForm->shouldReceive('isValid')->once()->andReturn(true);
+        $this->userForm->shouldReceive('getData')->once()->andReturn($this->getRowsetTask()[0]);
+
+        $pluginManager = Mockery::mock('Zend\Mvc\Controller\PluginManager');
+        $pluginManager->shouldReceive('setController')->andReturn(Mockery::self());
+
+        $flashMessenger = Mockery::mock('Zend\Mvc\Controller\Plugin\FlashMessenger');
+        $flashMessenger->shouldReceive('setNamespace')->once()->andReturn(Mockery::self());
+        $flashMessenger->shouldReceive('addMessage')->once()->andReturn(Mockery::self());
+
+        $pluginManager->shouldReceive('get')
+                ->with('flashMessenger', Mockery::any())
+                ->andReturn($flashMessenger)->once();
+
+        $redirectPlugin = Mockery::mock('Zend\Mvc\Controller\Plugin\Redirect');
+        $redirectPlugin->shouldReceive('toRoute')->once()->andReturn('redirect');
+        $pluginManager->shouldReceive('get')
+                ->with('redirect', Mockery::any())
+                ->andReturn($redirectPlugin)->once();
+
+        $this->userController->setPluginManager($pluginManager);
+        $this->assertEquals('redirect', $this->userController->create(array()));
+    }
+
+    private function getRowsetTask()
+    {
+        $user = new User();
+        $user->setId(1);
+        $user->setName('Joe');
+        $user->setEmail('joe@joe.com');
+        $user->setPassword('done');
+        return array($user);
+    }
 }
