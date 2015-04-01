@@ -19,7 +19,7 @@ class SiscourbControllerTest extends AbstractHttpControllerTestCase
     {
         parent::setUp();
         
-        $this->setApplicationConfig(include 'config/application.config.php');
+        $this->setApplicationConfig(include 'tests/TestConfig.php');
     }
 
     /**
