@@ -9,6 +9,8 @@ class UserControllerTest extends \PHPUnit_Framework_TestCase
 {
 
     protected $userController;
+    protected $userMapper;
+    protected $userForm;
 
     protected function setUp()
     {
@@ -25,5 +27,11 @@ class UserControllerTest extends \PHPUnit_Framework_TestCase
     {
         $expected = array();
         $this->assertEquals($expected, $this->userController->indexAction());
+    }
+
+    public function testRegisterAction()
+    {
+        $expected = array('form' => $this->userForm);
+        $this->assertEquals($expected, $this->userController->registerAction());
     }
 }

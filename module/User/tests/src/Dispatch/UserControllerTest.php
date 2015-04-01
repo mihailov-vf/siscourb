@@ -43,15 +43,27 @@ class UserControllerTest extends AbstractHttpControllerTestCase
     public function testIndexActionCanBeAccessed()
     {
         $this->dispatch('/user/');
-        $this->assertResponseStatusCode(200);
+        $this->assertMatchedRouteName('user');
         $this->assertControllerName('Siscourb\User\Controller\User');
         $this->assertControllerClass('UserController');
-        $this->assertMatchedRouteName('user');
+        $this->assertActionName('index');
+        $this->assertResponseStatusCode(200);
         
         $this->dispatch('/user');
-        $this->assertResponseStatusCode(200);
+        $this->assertMatchedRouteName('user');
         $this->assertControllerName('Siscourb\User\Controller\User');
         $this->assertControllerClass('UserController');
-        $this->assertMatchedRouteName('user');
+        $this->assertActionName('index');
+        $this->assertResponseStatusCode(200);
+    }
+    
+    public function testRegisterActionCanBeAccessed()
+    {
+        $this->dispatch('/user/register');
+        $this->assertMatchedRouteName('user/register');
+        $this->assertControllerName('Siscourb\User\Controller\User');
+        $this->assertControllerClass('UserController');
+        $this->assertActionName('register');
+        $this->assertResponseStatusCode(200);
     }
 }

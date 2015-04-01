@@ -53,4 +53,10 @@ class UserController extends AbstractRestfulController
     {
         return array();
     }
+    
+    public function registerAction()
+    {
+        $form = $this->userForm;
+        return array('form' => $form);
+    }
 }
