@@ -9,7 +9,7 @@ return array(
             'orm_default' => array(
                 'driverClass' => 'Doctrine\DBAL\Driver\PDOSqlite\Driver',
                 'params' => array(
-                    'path' => __DIR__ . '/../../tests/data/testing.sqlite',
+                    'path' => __DIR__ . '/../../tests/build/data/testing.sqlite',
                 ),
             )
         ),

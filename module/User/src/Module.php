@@ -30,13 +30,34 @@ use Zend\Mvc\MvcEvent;
 class Module
 {
 
+    public function onBootstrap(MvcEvent $e)
+    {
+        /**
+         * @var Zend\ServiceManager\ServiceManager Description
+         */
+        $sm = $e->getApplication()->getServiceManager();
+        $entityManager = $sm->get('Doctrine\ORM\EntityManager');
+
+        $em = \Zend\EventManager\StaticEventManager::getInstance();
+        $em->attach(
+            'ZfcUser\Service\User',
+            'register',
+            function ($e) use ($entityManager) {
+                $user = $e->getParam('user');  // User account object
+                //user role as default to new users
+                $role = $entityManager->getRepository('Siscourb\User\Entity\Role')
+                        ->findOneBy(array('roleId' => 'user'));
+
+                $user->addRole($role);
+            }
+        );
+    }
+
     public function getConfig()
     {
         $config = array();
         $configFiles = array(
             __DIR__ . '/../config/module.config.php',
-            __DIR__ . '/../config/service.config.php',
-            __DIR__ . '/../config/routes.config.php',
         );
         foreach ($configFiles as $configFile) {
             $config = ArrayUtils::merge($config, include $configFile);

@@ -20,6 +20,10 @@
         "php": ">=5.4",
         "zendframework/zendframework": "2.*",
         "doctrine/doctrine-orm-module": "0.*",
+        
+        "zf-commons/zfc-user-doctrine-orm": "dev-master",
+        "bjyoungblood/bjy-authorize": "dev-master",
+        
         "neilime/zf2-twb-bundle": "2.*",
         "neilime/zf2-assets-bundle": "dev-master",
         "maglnet/magl-markdown": "~1.1"
