@@ -53,7 +53,7 @@ class UserFilterTest extends \PHPUnit_Framework_TestCase
                 array(
                     'name' => 'Joe',
                     'email' => 'joe@joe.com',
-                    'password' => 'jo3Max',
+                    'password' => 'jo3MaxTurbo',
                 ),
                 'testValidData',
                 true,
