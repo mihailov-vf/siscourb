@@ -48,12 +48,22 @@ class UserController extends AbstractRestfulController
         $this->userMapper = $userMapper;
         $this->userForm = $userForm;
     }
-    
+
+    public function create($data)
+    {
+        $this->userForm->setData($data);
+
+        if ($this->userForm->isValid()) {
+        }
+
+        return array('form' => $this->userForm);
+    }
+
     public function indexAction()
     {
         return array();
     }
-    
+
     public function registerAction()
     {
         $form = $this->userForm;
