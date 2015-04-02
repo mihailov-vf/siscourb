@@ -47,5 +47,19 @@ return array(
                 'role_entity_class' => 'Siscourb\User\Entity\Role',
             ),
         ),
+        'resource_providers' => array(
+            \BjyAuthorize\Provider\Resource\Config::class => array(
+                'menu' => array(),
+            ),
+        ),
+        'rule_providers' => array(
+            'BjyAuthorize\Provider\Rule\Config' => array(
+                'allow' => array(
+                    array( array( 'user' ), 'menu', array( 'menu_user' ) ),
+                    array( array( 'manager', 'admin' ), 'menu', array( 'menu_manager' ) ),
+                    array( array( 'admin' ), 'menu', array( 'menu_admin' ) ),
+                ),
+            ),
+        ),
     ),
 );
