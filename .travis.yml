@@ -13,7 +13,10 @@ install:
 before_script:
   - composer require --dev --no-update phpunit/phpunit:@stable phpunit/php-code-coverage:@stable satooshi/php-coveralls:@dev
   - composer update phpunit/php-code-coverage satooshi/php-coveralls
+  - cp config/autoload/doctrine.test.php.dist config/autoload/doctrine.local.php
+  - mkdir -p tests/build/data/
   - mkdir -p build/logs
+  - vendor/bin/doctrine-module orm:schema-tool:create
 
 script:
   - php vendor/bin/phpunit --coverage-clover build/logs/clover.xml --bootstrap tests/bootstrap.php --configuration tests/configuration.xml
