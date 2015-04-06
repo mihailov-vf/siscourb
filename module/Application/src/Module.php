@@ -4,6 +4,7 @@ namespace Siscourb\Application;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Zend\Stdlib\ArrayUtils;
 
 class Module
 {
@@ -17,6 +18,13 @@ class Module
 
     public function getConfig()
     {
-        return include __DIR__ . '/../config/module.config.php';
+        $config = array();
+        $configFiles = array(
+            __DIR__ . '/../config/module.config.php',
+        );
+        foreach ($configFiles as $configFile) {
+            $config = ArrayUtils::merge($config, include $configFile);
+        }
+        return $config;
     }
 }
