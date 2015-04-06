@@ -1,0 +1,14 @@
+@startuml
+
+title Admin Use Cases
+
+:Admin:
+
+Admin --> (IssueManagement)
+Admin --> (Approve Organization Creation)
+Admin --> (Ban Organization)
+Admin --> (Ban User)
+
+(Assign User Role) <.. (Approve Organization Creation) :include
+
+@enduml

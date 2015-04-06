@@ -1,0 +1,17 @@
+@startuml
+
+title User Profile Use Cases
+
+:User:
+
+User --> (Login)
+User --> (Register)
+User --> (Edit Profile)
+User --> (Delete Account)
+
+(Login) ..> (Authentication) :include
+
+(Edit Profile) ..> (Authorization) :include
+(Delete Account) ..> (Authorization) :include
+
+@enduml

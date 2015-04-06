@@ -1,0 +1,25 @@
+@startuml
+
+title Siscourb Entities
+
+class User
+class Role
+class Organization
+class Category
+class Issue
+class Ticket
+class Note
+
+User "1" -right "1..*" Role
+User "1" -- "0..*" Ticket
+User "1" -- "0..*" Note
+
+Organization "1" -- "1..*" Ticket
+
+Ticket "1" o-- "0..*" Note
+Ticket "1..*" --> "1" Issue
+
+
+Category "1..*" o-- "0..*" Issue
+
+@enduml

@@ -1,0 +1,24 @@
+@startuml
+
+title Packages Interaction
+
+
+package Siscourb{
+    package Siscourb.Application
+
+    package Siscourb.User
+
+    package Siscourb.Admin
+
+    package Siscourb.Organization
+
+    package Siscourb.Issue
+
+    package Siscourb.Ticket
+}
+
+package Zend
+
+package ZfcUser
+
+@enduml
