@@ -17,6 +17,7 @@ before_script:
   - mkdir -p tests/build/data/
   - mkdir -p build/logs
   - vendor/bin/doctrine-module orm:schema-tool:create
+  - vendor/bin/doctrine-module data-fixture:import
 
 script:
   - php vendor/bin/phpunit --coverage-clover build/logs/clover.xml --bootstrap tests/bootstrap.php --configuration tests/configuration.xml
