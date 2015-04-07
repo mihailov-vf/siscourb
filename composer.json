@@ -21,8 +21,8 @@
         "zendframework/zendframework": "2.*",
         "doctrine/doctrine-orm-module": "0.*",
         
-        "zf-commons/zfc-user-doctrine-orm": "dev-master",
-        "bjyoungblood/bjy-authorize": "dev-master",
+        "zf-commons/zfc-user-doctrine-orm": "@stable",
+        "bjyoungblood/bjy-authorize": "@stable",
         
         "neilime/zf2-twb-bundle": "2.*",
         "neilime/zf2-assets-bundle": "dev-master",

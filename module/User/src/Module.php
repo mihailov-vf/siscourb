@@ -24,8 +24,12 @@ namespace Siscourb\User;
  *
  * @author Mihailov Vasilievic Filho
  */
-use Zend\Stdlib\ArrayUtils;
+
+use Zend\EventManager\EventInterface;
+use Zend\EventManager\StaticEventManager;
 use Zend\Mvc\MvcEvent;
+use Zend\ServiceManager\ServiceManager;
+use Zend\Stdlib\ArrayUtils;
 
 class Module
 {
@@ -33,16 +37,16 @@ class Module
     public function onBootstrap(MvcEvent $e)
     {
         /**
-         * @var Zend\ServiceManager\ServiceManager Description
+         * @var ServiceManager Description
          */
         $sm = $e->getApplication()->getServiceManager();
         $entityManager = $sm->get('Doctrine\ORM\EntityManager');
 
-        $em = \Zend\EventManager\StaticEventManager::getInstance();
+        $em = StaticEventManager::getInstance();
         $em->attach(
             'ZfcUser\Service\User',
             'register',
-            function ($e) use ($entityManager) {
+            function (EventInterface $e) use ($entityManager) {
                 $user = $e->getParam('user');  // User account object
                 //user role as default to new users
                 $role = $entityManager->getRepository('Siscourb\User\Entity\Role')
