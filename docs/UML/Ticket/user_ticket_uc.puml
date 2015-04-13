@@ -1,2 +1,14 @@
 @startuml
+
+:User:
+
+User -- (Create Ticket)
+User -- (List Tickets)
+User -- (View Ticket)
+
+(View Ticket) ..> (Add Note) :includes
+(View Ticket) ..> (Rate Ticket) :includes
+(View Ticket) ..> (Close Ticket) :includes
+(View Ticket) ..> (Open Ticket) :extends
+
 @enduml

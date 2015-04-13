@@ -19,8 +19,8 @@ Usuário --- (Login)
 Usuário -- (Cadastro de usuário)
 Usuário -- (Cadastro Externo)
 
-(Cadastro de usuário) <.(Cadastro de Gestor)  : extends
-Usuário -- (Cadastro de Gestor)
+(Cadastro de Organização) .> (Cadastro de Gestor)  : includes
+Usuário -- (Cadastro de Organização)
 
 Admin -- (Cadastro de Entidade)
 Gestor -- (Cadastro de Entidade)
@@ -29,5 +29,8 @@ Admin -- (Cadastro de Categorias)
 Admin -- (Cadastro de Necessidades)
 
 Usuário -- (Registrar chamado)
+
+Usuário -- (Mapa)
+(Mapa) .> (Registrar chamado) : includes
 
 @enduml

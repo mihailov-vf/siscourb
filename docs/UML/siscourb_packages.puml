@@ -19,6 +19,28 @@ package Siscourb{
 
 package Zend
 
+package Doctrine.ORM_Module
+
+package Doctrine
+
+database "SiscourbDB"
+
+Doctrine --> SiscourbDB
+
+Doctrine <-- Doctrine.ORM_Module
+Doctrine.ORM_Module --> Zend
+
 package ZfcUser
+
+package BjyAuthorize
+
+Zend <-- ZfcUser
+BjyAuthorize --> ZfcUser :extends
+
+ZfcUser --> Doctrine.ORM_Module
+BjyAuthorize --> Doctrine.ORM_Module
+
+Siscourb ---> BjyAuthorize :use service
+Siscourb.User --> ZfcUser :extends
 
 @enduml
