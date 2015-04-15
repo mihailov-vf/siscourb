@@ -41,5 +41,4 @@ class Module
         }
         return $config;
     }
-
 }

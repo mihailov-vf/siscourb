@@ -1,5 +1,7 @@
 <?php
 
+namespace Siscourb\User\Behat;
+
 /**
  * Defines application features from the specific context.
  */
