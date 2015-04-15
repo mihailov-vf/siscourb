@@ -52,7 +52,7 @@ class Organization
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Contact",  mappedBy="organization")
+     * @ORM\OneToMany(targetEntity="Contact",  mappedBy="organization", cascade={"all"})
      */
     private $contacts;
 
