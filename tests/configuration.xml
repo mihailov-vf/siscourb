@@ -36,6 +36,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <testsuite name="Organization Module Tests">
             <directory>../module/Organization/tests</directory>
         </testsuite>
+        <testsuite name="Issue Module Tests">
+            <directory>../module/Issue/tests</directory>
+        </testsuite>
    </testsuites>
     
     <filter>

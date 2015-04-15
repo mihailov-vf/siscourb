@@ -17,6 +17,7 @@ return array(
         'Siscourb\Application',
         'Siscourb\User',
         'Siscourb\Organization',
+        'Siscourb\Issue',
     ),
 
     // These are various options for the listeners attached to the ModuleManager
