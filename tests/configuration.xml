@@ -39,6 +39,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         <testsuite name="Issue Module Tests">
             <directory>../module/Issue/tests</directory>
         </testsuite>
+        <testsuite name="Ticket Module Tests">
+            <directory>../module/Ticket/tests</directory>
+        </testsuite>
    </testsuites>
     
     <filter>

@@ -15,7 +15,8 @@
             "Siscourb\\Application\\": "module/Application/src",
             "Siscourb\\User\\": "module/User/src",
             "Siscourb\\Organization\\": "module/Organization/src",
-            "Siscourb\\Issue\\": "module/Issue/src"
+            "Siscourb\\Issue\\": "module/Issue/src",
+            "Siscourb\\Ticket\\": "module/Ticket/src"
         }
     },
     "require": {
