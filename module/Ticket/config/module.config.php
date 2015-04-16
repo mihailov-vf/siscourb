@@ -11,6 +11,13 @@ return array(
     ),
     //doctrine config
     'doctrine' => array(
+        'configuration' => array(
+            'orm_default' => array(
+                'types' => array(
+                    'point' => 'Siscourb\Ticket\Type\PointType'
+                )
+            ),
+        ),
         'driver' => array(
             'ticket_entity' => array(
                 'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
@@ -21,6 +28,13 @@ return array(
                     'Siscourb\Ticket\Entity' => 'ticket_entity'
                 )
             )
+        ),
+        'connection' => array(
+            'orm_default' => array(
+                'doctrine_type_mappings' => array(
+                    'point' => 'point',
+                ),
+            ),
         ),
         'fixture' => array(
             'ticket_fixture' => __DIR__ . '/../src/Fixture',
