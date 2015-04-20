@@ -91,7 +91,7 @@ class Ticket
     /**
      * @var Issue
      *
-     * @ORM\ManyToOne(targetEntity="Issue")
+     * @ORM\ManyToOne(targetEntity="Siscourb\Issue\Entity\Issue")
      * @ORM\JoinColumn(name="issue_id", referencedColumnName="id")
      */
     private $issue;
