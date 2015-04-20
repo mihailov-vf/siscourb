@@ -1,0 +1,24 @@
+<?php
+/**
+* Testing Configuration Override
+*/
+
+return array(
+    'doctrine' => array(
+        'configuration' => array(
+            'orm_default' => array(
+                'query_cache'       => 'apc',
+                'result_cache'      => 'apc',
+                'metadata_cache'    => 'apc'
+            )
+        ),
+        'connection' => array(
+            'orm_default' => array(
+                'driverClass' => 'Doctrine\DBAL\Driver\PDOSqlite\Driver',
+                'params' => array(
+                    'path' => __DIR__ . '/../../data/siscourb.sqlite',
+                ),
+            )
+        ),
+    ),
+);
