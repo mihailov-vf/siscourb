@@ -21,6 +21,7 @@ before_script:
   - cp config/autoload/doctrine.test.php.dist config/autoload/doctrine.local.php
   - mkdir -p tests/build/data/
   - mkdir -p build/logs
+  - wget https://scrutinizer-ci.com/ocular.phar
   - vendor/bin/doctrine-module orm:schema-tool:create
   - vendor/bin/doctrine-module data-fixture:import
 
@@ -29,3 +30,4 @@ script:
 
 after_script:
   - php vendor/bin/coveralls -v --exclude-no-stmt
+  - php ocular.phar code-coverage:upload --format=php-clover build/logs/clover.xml
