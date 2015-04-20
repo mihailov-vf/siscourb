@@ -1,2 +1,11 @@
 @startuml
+
+:Manager:
+
+Manager -- (List Tickets)
+(List Tickets) <.. (Filter List) :includes
+
+Manager -- (View Ticket)
+(View Ticket) ..> (Assign Ticket) :extends
+
 @enduml

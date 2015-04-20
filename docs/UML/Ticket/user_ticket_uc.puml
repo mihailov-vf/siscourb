@@ -6,9 +6,9 @@ User -- (Create Ticket)
 User -- (List Tickets)
 User -- (View Ticket)
 
-(View Ticket) ..> (Add Note) :includes
-(View Ticket) ..> (Rate Ticket) :includes
-(View Ticket) ..> (Close Ticket) :includes
+(View Ticket) ..> (Add Note) :extends
+(View Ticket) ..> (Rate Ticket) :extends
+(View Ticket) ..> (Close Ticket) :extends
 (View Ticket) ..> (Open Ticket) :extends
 
 @enduml
