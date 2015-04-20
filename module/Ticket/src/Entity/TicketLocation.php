@@ -27,8 +27,7 @@ use Siscourb\Ticket\ValueObject\Point;
  *
  * @author Mihailov Vasilievic Filho <mihailov.vf@gmail.com>
  *
- * @ORM\Entity
- * @ORM\Table(name="ticket_location")
+ * @ORM\Embeddable
  */
 class TicketLocation
 {
@@ -46,21 +45,14 @@ class TicketLocation
      * @var string
      */
     private $address;
-
-    /**
-     * @var Ticket
-     *
-     * @ORM\Id
-     * @ORM\OneToOne(targetEntity="Ticket", inversedBy="location");
-     */
-    private $ticket;
-
-    public function __construct(Ticket $ticket)
+    
+    public function __construct(Point $point, $address)
     {
-        $this->ticket = $ticket;
+        $this->point = $point;
+        $this->address = $address;
     }
 
-    /**
+        /**
      * @return Point
      */
     public function getPoint()
@@ -74,39 +66,5 @@ class TicketLocation
     public function getAddress()
     {
         return $this->address;
-    }
-
-    /**
-     * @return Ticket
-     */
-    public function getTicket()
-    {
-        return $this->ticket;
-    }
-
-    /**
-     * @param Point $point
-     * @param string $address
-     */
-    public function changeLocation(Point $point, $address)
-    {
-        $this->setPoint($point);
-        $this->setAddress($address);
-    }
-
-    /**
-     * @param Point $point
-     */
-    protected function setPoint(Point $point)
-    {
-        $this->point = $point;
-    }
-
-    /**
-     * @param string $address
-     */
-    protected function setAddress($address)
-    {
-        $this->address = $address;
     }
 }
