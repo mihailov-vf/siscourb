@@ -219,7 +219,7 @@ class Ticket
     }
 
     /**
-     * @return ArrayCollection<Note>
+     * @return ArrayCollection
      */
     public function getNotes()
     {

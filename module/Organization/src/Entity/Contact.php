@@ -42,7 +42,7 @@ class Contact
     private $id;
 
     /**
-     * @var int
+     * @var Organization
      *
      * @ORM\ManyToOne(targetEntity="Siscourb\Organization\Entity\Organization", inversedBy="contacts")
      * @ORM\JoinColumn(name="organization_id", referencedColumnName="id")

@@ -65,7 +65,7 @@ class Note
     private $ticket;
 
     /**
-     * @var Siscourb\User\Entity\User
+     * @var User
      *
      * @ORM\ManyToOne(targetEntity="Siscourb\User\Entity\User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
