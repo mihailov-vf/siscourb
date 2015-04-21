@@ -11,7 +11,7 @@ class LocationFieldsetFactoryTest extends \PHPUnit_Framework_TestCase
     /**
      * @var LocationFieldsetFactory
      */
-    protected $object;
+    protected $locationFieldsetFactory;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -19,7 +19,7 @@ class LocationFieldsetFactoryTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->object = new LocationFieldsetFactory;
+        $this->locationFieldsetFactory = new LocationFieldsetFactory;
     }
 
     /**
@@ -43,11 +43,9 @@ class LocationFieldsetFactoryTest extends \PHPUnit_Framework_TestCase
         $formManager = \Mockery::mock('Zend\Form\FormElementManager');
         $formManager->shouldReceive('getServiceLocator')->once()->andReturn($serviceLocator);
         
-        $locationFieldsetFactory = new LocationFieldsetFactory();
-        
         $this->assertInstanceOf(
             'Siscourb\Ticket\Form\LocationFieldset',
-            $locationFieldsetFactory->createService($formManager)
+            $this->locationFieldsetFactory->createService($formManager)
         );
     }
 }
