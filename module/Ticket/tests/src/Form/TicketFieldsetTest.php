@@ -12,6 +12,12 @@ class TicketFieldsetTest extends \PHPUnit_Framework_TestCase
      * @var TicketFieldset
      */
     protected $ticketFieldset;
+    
+    /**
+     *
+     * @var LocationFieldset
+     */
+    protected $locationFieldset;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -19,9 +25,9 @@ class TicketFieldsetTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $locationFieldset = \Mockery::mock('Siscourb\Ticket\Form\LocationFieldset')->makePartial();
-        
-        $this->ticketFieldset = new TicketFieldset($locationFieldset);
+        $this->locationFieldset = \Mockery::mock('Siscourb\Ticket\Form\LocationFieldset')->makePartial();
+
+        $this->ticketFieldset = new TicketFieldset($this->locationFieldset);
     }
 
     /**
@@ -32,13 +38,20 @@ class TicketFieldsetTest extends \PHPUnit_Framework_TestCase
     {
         
     }
-    
+
     public function testTicketFieldsetConstruction()
     {
         $this->assertInstanceOf('Siscourb\Ticket\Form\TicketFieldset', $this->ticketFieldset);
         $this->assertInstanceOf('DoctrineModule\Persistence\ObjectManagerAwareInterface', $this->ticketFieldset);
         $this->assertEquals('TicketFieldset', $this->ticketFieldset->getName());
         
+        $this->assertAttributeSame($this->locationFieldset, 'locationFieldset', $this->ticketFieldset);
+    }
+
+    public function testInit()
+    {
+        $this->ticketFieldset->init();
+
         //Elements
         $this->assertInstanceOf('Zend\Form\Element\Hidden', $this->ticketFieldset->get('id'));
         $this->assertInstanceOf('Zend\Form\Element\Hidden', $this->ticketFieldset->get('user'));
@@ -46,15 +59,15 @@ class TicketFieldsetTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Siscourb\Ticket\Form\LocationFieldset', $this->ticketFieldset->get('location'));
         $this->assertInstanceOf('DoctrineModule\Form\Element\ObjectSelect', $this->ticketFieldset->get('issue'));
     }
-    
+
     public function testGetAndSetObjectManager()
     {
         $this->assertEmpty($this->ticketFieldset->getObjectManager());
-        
+
         $objectManager = \Mockery::mock('Doctrine\Common\Persistence\ObjectManager');
-        
+
         $this->ticketFieldset->setObjectManager($objectManager);
-        
+
         $this->assertInstanceOf(
             'Doctrine\Common\Persistence\ObjectManager',
             $this->ticketFieldset->getObjectManager()

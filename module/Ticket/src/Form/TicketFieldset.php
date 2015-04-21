@@ -32,6 +32,13 @@ class TicketFieldset extends Fieldset implements ObjectManagerAwareInterface
 {
 
     /**
+     *
+     * @var LocationFieldset
+     */
+    private $locationFieldset;
+
+
+    /**
      * @var ObjectManager
      */
     protected $objectManager;
@@ -39,12 +46,7 @@ class TicketFieldset extends Fieldset implements ObjectManagerAwareInterface
     public function __construct(LocationFieldset $locationFieldset)
     {
         parent::__construct('TicketFieldset');
-
-        $this->addIdField();
-        $this->addUserField();
-        $this->addDescriptionField();
-        $this->addLocationFieldset($locationFieldset);
-        $this->addIssueField();
+        $this->locationFieldset = $locationFieldset;
     }
 
     public function setObjectManager(ObjectManager $objectManager)
@@ -55,6 +57,15 @@ class TicketFieldset extends Fieldset implements ObjectManagerAwareInterface
     public function getObjectManager()
     {
         return $this->objectManager;
+    }
+    
+    public function init()
+    {
+        $this->addIdField();
+        $this->addUserField();
+        $this->addDescriptionField();
+        $this->addLocationFieldset($this->locationFieldset);
+        $this->addIssueField();
     }
 
     protected function addIdField()
@@ -97,7 +108,7 @@ class TicketFieldset extends Fieldset implements ObjectManagerAwareInterface
                 'object_manager' => $this->getObjectManager(),
                 'target_class' => 'Siscourb\Issue\Entity\Issue',
                 'label_generator' => function ($targetEntity) {
-                    return $targetEntity->getId() . ' - ' . $targetEntity->getTitle();
+                    return $targetEntity->getName();
                 },
             ),
         ));
