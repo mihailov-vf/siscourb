@@ -37,11 +37,8 @@ use Siscourb\User\Entity\User;
 class Ticket
 {
 
-    const STATUS_OPEN = 'open';             //Created or re-opened ticket
-//    const STATUS_ASSIGNED = 'assigned';     //Organization assigns ticket
-//    const STATUS_UNSUITABLE = 'unsuitable'; //Organization discards Ticket due usuitable request; Need to Justify
+    const STATUS_OPEN = 'open';
     const STATUS_CLOSED = 'closed';
-//    const STATUS_CLOSED_SUCCESS = 'success';
 
     /**
      * @var int
@@ -135,6 +132,10 @@ class Ticket
         $this->open();
     }
 
+    /**
+     * @return void
+     * @throws \Exception
+     */
     public function open()
     {
         if ($this->status == self::STATUS_OPEN) {
@@ -147,6 +148,9 @@ class Ticket
         $this->status = self::STATUS_OPEN;
     }
 
+    /**
+     * @return void
+     */
     public function close()
     {
         $this->status = self::STATUS_CLOSED;

@@ -1,3 +1,3 @@
 tools:
     external_code_coverage:
-        runs: 2    # Scrutinizer will wait for two code coverage submissions
+        runs: 3    # Scrutinizer will wait for three code coverage submissions
