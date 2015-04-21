@@ -17,54 +17,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Siscourb\Ticket\Entity;
+namespace Siscourb\Ticket\Form;
 
-use Doctrine\ORM\Mapping as ORM;
-use Siscourb\Ticket\ValueObject\Point;
+use Zend\ServiceManager\FactoryInterface;
+use Zend\ServiceManager\ServiceLocatorInterface;
 
 /**
- * Description of TicketLocation
+ * Description of TicketFormFactory
  *
  * @author Mihailov Vasilievic Filho <mihailov.vf@gmail.com>
- *
- * @ORM\Embeddable
  */
-class TicketLocation
+class TicketFormFactory implements FactoryInterface
 {
-
-    /**
-     * @ORM\Column(type="point")
-     *
-     * @var Point
-     */
-    private $point;
-
-    /**
-     * @ORM\Column(type="string")
-     *
-     * @var string
-     */
-    private $address;
-    
-    public function __construct(Point $point, $address)
+    public function createService(ServiceLocatorInterface $formManager)
     {
-        $this->point = $point;
-        $this->address = $address;
-    }
-
-        /**
-     * @return Point
-     */
-    public function getPoint()
-    {
-        return $this->point;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAddress()
-    {
-        return $this->address;
+        
     }
 }

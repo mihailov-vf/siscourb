@@ -17,31 +17,54 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Siscourb\Ticket\Form;
+namespace Siscourb\Ticket\Entity;
 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
-use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
+use Doctrine\ORM\Mapping as ORM;
+use Siscourb\Ticket\ValueObject\Point;
 
 /**
- * Description of LocationFieldsetFactory
+ * Description of TicketLocation
  *
  * @author Mihailov Vasilievic Filho <mihailov.vf@gmail.com>
+ *
+ * @ORM\Embeddable
  */
-class LocationFieldsetFactory implements FactoryInterface
+class Location
 {
 
-    public function createService(ServiceLocatorInterface $formManager)
+    /**
+     * @ORM\Column(type="point")
+     *
+     * @var Point
+     */
+    private $point;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @var string
+     */
+    private $address;
+    
+    public function __construct(Point $point, $address)
     {
-        $serviceManager = $formManager->getServiceLocator();
-        
-        $objectManager = $serviceManager->get('Doctrine\ORM\EntityManager');
-        
-        $locationFieldset = new LocationFieldset();
-        $locationHydrator = new DoctrineHydrator($objectManager, 'Siscourb\Ticket\Entity\Location');
-        
-        $locationFieldset->setHydrator($locationHydrator);
-        
-        return $locationFieldset;
+        $this->point = $point;
+        $this->address = $address;
+    }
+
+        /**
+     * @return Point
+     */
+    public function getPoint()
+    {
+        return $this->point;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
     }
 }

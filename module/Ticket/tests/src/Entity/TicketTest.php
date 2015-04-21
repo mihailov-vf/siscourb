@@ -146,7 +146,7 @@ class TicketTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertNull($this->ticket->getLocation());
 
-        $expected = \Mockery::mock('Siscourb\Ticket\Entity\TicketLocation');
+        $expected = \Mockery::mock('Siscourb\Ticket\Entity\Location');
         $this->ticket->setLocation($expected);
         $this->assertAttributeSame($expected, 'location', $this->ticket);
 
