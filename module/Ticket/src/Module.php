@@ -35,6 +35,7 @@ class Module
         $configFiles = array(
             __DIR__ . '/../config/module.config.php',
             __DIR__ . '/../config/routes.config.php',
+            __DIR__ . '/../config/service.config.php',
         );
         foreach ($configFiles as $configFile) {
             $config = ArrayUtils::merge($config, include $configFile);
