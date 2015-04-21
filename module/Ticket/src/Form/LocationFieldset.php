@@ -33,12 +33,7 @@ class LocationFieldset extends Fieldset
         parent::__construct('LocationFieldset');
         
         $this->add(array(
-            'name' => 'latitude',
-            'type' => 'Zend\Form\Element\Text'
-        ));
-        
-        $this->add(array(
-            'name' => 'longitude',
+            'name' => 'point',
             'type' => 'Zend\Form\Element\Text'
         ));
         

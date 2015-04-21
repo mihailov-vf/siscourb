@@ -37,8 +37,7 @@ class LocationFieldsetTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('LocationFieldset', $this->locationFieldset->getName());
         
         //Elements
-        $this->assertInstanceOf('Zend\Form\Element\Text', $this->locationFieldset->get('latitude'));
-        $this->assertInstanceOf('Zend\Form\Element\Text', $this->locationFieldset->get('longitude'));
+        $this->assertInstanceOf('Zend\Form\Element\Text', $this->locationFieldset->get('point'));
         $this->assertInstanceOf('Zend\Form\Element\Text', $this->locationFieldset->get('address'));
     }
 }
