@@ -19,6 +19,7 @@
 
 namespace Siscourb\Ticket\Form;
 
+use Siscourb\Ticket\Entity\Ticket;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -29,8 +30,19 @@ use Zend\ServiceManager\ServiceLocatorInterface;
  */
 class TicketFormFactory implements FactoryInterface
 {
+
     public function createService(ServiceLocatorInterface $formManager)
     {
+        $serviceManager = $formManager->getServiceLocator();
         
+        $authService = $serviceManager->get('zfcuser_auth_service');
+        $user = $authService->getIdentity();
+        
+        $ticketFieldset = $formManager->get('Siscourb\Ticket\Form\TicketFieldset');
+
+        $ticketForm = new TicketForm($ticketFieldset);
+        $ticketForm->bind(new Ticket($user));
+        
+        return $ticketForm;
     }
 }
