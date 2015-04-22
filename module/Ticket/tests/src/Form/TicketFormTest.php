@@ -15,7 +15,7 @@ class TicketFormTest extends \PHPUnit_Framework_TestCase
 
     /**
      *
-     * @var TicketFieldset
+     * @var TicketFieldset|\Mockery\Mock
      */
     protected $ticketFieldset;
 

@@ -31,6 +31,11 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class TicketFormFactory implements FactoryInterface
 {
 
+    /**
+     * @todo Binds Entity to Form
+     * @param ServiceLocatorInterface $formManager
+     * @return \Siscourb\Ticket\Form\TicketForm
+     */
     public function createService(ServiceLocatorInterface $formManager)
     {
         $serviceManager = $formManager->getServiceLocator();
@@ -41,7 +46,7 @@ class TicketFormFactory implements FactoryInterface
         $ticketFieldset = $formManager->get('Siscourb\Ticket\Form\TicketFieldset');
 
         $ticketForm = new TicketForm($ticketFieldset);
-        $ticketForm->bind(new Ticket($user));
+//        $ticketForm->bind(new Ticket($user));
         
         return $ticketForm;
     }
