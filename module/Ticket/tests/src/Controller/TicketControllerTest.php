@@ -11,7 +11,17 @@ class TicketControllerTest extends \PHPUnit_Framework_TestCase
     /**
      * @var TicketController
      */
-    protected $object;
+    protected $ticketController;
+
+    /**
+     * @var \Siscourb\Ticket\Repository\TicketRepository
+     */
+    protected $ticketMapper;
+
+    /**
+     * @var \Siscourb\Ticket\Form\TicketForm 
+     */
+    protected $ticketForm;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -19,7 +29,9 @@ class TicketControllerTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->object = new TicketController;
+        $this->ticketMapper = \Mockery::mock('Siscourb\Ticket\Repository\TicketRepository');
+        $this->ticketForm = \Mockery::mock('Siscourb\Ticket\Form\TicketForm');
+        $this->ticketController = new TicketController($this->ticketMapper, $this->ticketForm);
     }
 
     /**
@@ -35,7 +47,7 @@ class TicketControllerTest extends \PHPUnit_Framework_TestCase
      * @covers Siscourb\Ticket\Controller\TicketController::listTicketsAction
      * @todo   Implement testListTicketsAction().
      */
-    public function testListTicketsAction()
+    public function testListAction()
     {
         // Remove the following lines when you implement this test.
         $this->markTestIncomplete(

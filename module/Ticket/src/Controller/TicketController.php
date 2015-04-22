@@ -19,6 +19,8 @@
 
 namespace Siscourb\Ticket\Controller;
 
+use Siscourb\Ticket\Form\TicketForm;
+use Siscourb\Ticket\Mapper\TicketMapperInterface;
 use Zend\Mvc\Controller\AbstractActionController;
 
 /**
@@ -29,17 +31,35 @@ use Zend\Mvc\Controller\AbstractActionController;
 class TicketController extends AbstractActionController
 {
 
-    public function listTicketsAction()
+    /**
+     * @var TicketMapperInterface
+     */
+    private $ticketMapper;
+
+    /**
+     * @var TicketForm
+     */
+    private $ticketForm;
+
+    public function __construct(TicketMapperInterface $ticketMapper, TicketForm $ticketForm)
+    {
+        $this->ticketMapper = $ticketMapper;
+        $this->ticketForm = $ticketForm;
+    }
+
+    public function listAction()
+    {
+        $tickets = array();
+
+        return array('tickets' => $tickets);
+    }
+
+    public function addAction()
     {
         
     }
 
     public function createAction()
-    {
-        
-    }
-
-    public function saveAction()
     {
         
     }
@@ -55,6 +75,11 @@ class TicketController extends AbstractActionController
     }
 
     public function editAction()
+    {
+        
+    }
+
+    public function saveAction()
     {
         
     }
