@@ -31,7 +31,7 @@ use Siscourb\User\Entity\User;
  *
  * @author Mihailov Vasilievic Filho <mihailov.vf@gmail.com>
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Siscourb\Ticket\Repository\TicketRepository")
  * @ORM\Table(name="tickets")
  */
 class Ticket
