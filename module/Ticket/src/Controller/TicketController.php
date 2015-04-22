@@ -56,7 +56,8 @@ class TicketController extends AbstractActionController
 
     public function addAction()
     {
-        
+        $form = $this->ticketForm;
+        return array('form' => $form);
     }
 
     public function createAction()

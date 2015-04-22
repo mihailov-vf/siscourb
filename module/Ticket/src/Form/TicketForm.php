@@ -55,8 +55,9 @@ class TicketForm extends Form
                 'value' => 'Enviar',
                 'id' => 'submit',
             ),
+            'options' => array('label' => 'Enviar')
         ));
-        
+
         $this->setAttribute('method', 'post');
     }
 }
