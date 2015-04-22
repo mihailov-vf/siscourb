@@ -14,5 +14,8 @@ return array(
         ),
     ),
     'controllers' => array(
+        'factories' => array(
+            'Siscourb\Ticket\Controller\Ticket' => 'Siscourb\Ticket\Controller\TicketControllerFactory',
+        ),
     ),
 );

@@ -1,0 +1,21 @@
+<table class="table table-responsive table-bordered table-striped">
+    <thead>
+        <tr>
+            <td>Ocorrencia</td>
+            <td>Descrição</td>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if (empty($tickets)) { ?>
+            <tr>
+                <td colspan="2">Sem chamados no momento</td>
+            </tr>
+        <?php } else  ?>
+        <?php foreach ($tickets as $ticket) { ?>
+            <tr>
+                <td><?= $ticket->getIssue()->getName() ?></td>
+                <td><?= $ticket->getDescription() ?></td>
+            </tr>
+        <?php } ?>
+    </tbody>
+</table>

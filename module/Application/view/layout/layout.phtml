@@ -40,7 +40,7 @@
                         <?php if($this->isAllowed( 'menu', 'menu_user')): ?>
                         <li><a href="<?= $this->url('zfcuser/logout');?>">Logout</a></li>
                         <li><a href="<?= $this->url('zfcuser');?>">Perfil</a></li>
-                        <li><a href="<?php //echo $this->url('task');?>">Chamados</a></li>
+                        <li><a href="<?php echo $this->url('ticket');?>">Chamados</a></li>
                         <?php else: ?>
                         <li><a href="<?= $this->url('zfcuser/login');?>">Login</a></li>
                         <li><a href="<?= $this->url('zfcuser/register');?>">Cadastrar-se</a></li>
