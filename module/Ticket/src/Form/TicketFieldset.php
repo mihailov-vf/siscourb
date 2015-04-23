@@ -97,7 +97,6 @@ class TicketFieldset extends Fieldset implements ObjectManagerAwareInterface
     protected function addLocationFieldset($locationFieldset)
     {
         $locationFieldset->setName('location');
-        $this->locationFieldset->setOption('label', 'Localização');
         
         $this->add($locationFieldset);
     }
@@ -108,6 +107,7 @@ class TicketFieldset extends Fieldset implements ObjectManagerAwareInterface
             'name' => 'issue',
             'type' => 'DoctrineModule\Form\Element\ObjectSelect',
             'options' => array(
+                'label' => 'Necessidade',
                 'object_manager' => $this->getObjectManager(),
                 'target_class' => 'Siscourb\Issue\Entity\Issue',
                 'label_generator' => function (Issue $issue) {

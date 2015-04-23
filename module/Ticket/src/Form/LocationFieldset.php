@@ -34,12 +34,14 @@ class LocationFieldset extends Fieldset
         
         $this->add(array(
             'name' => 'point',
-            'type' => 'Zend\Form\Element\Text'
+            'type' => 'Zend\Form\Element\Text',
+            'options' => array('label' => 'Latitude e longitude'),
         ));
         
         $this->add(array(
             'name' => 'address',
-            'type' => 'Zend\Form\Element\Text'
+            'type' => 'Zend\Form\Element\Text',
+            'options' => array('label' => 'Endereço'),
         ));
     }
 }
