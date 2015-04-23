@@ -101,7 +101,18 @@ class Note
     {
         return $this->description;
     }
+    
+    public function getTicket()
+    {
+        return $this->ticket;
+    }
 
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    
     /**
      * @param int $id
      */

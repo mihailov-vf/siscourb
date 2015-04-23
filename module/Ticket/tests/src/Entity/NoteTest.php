@@ -93,4 +93,17 @@ class NoteTest extends PHPUnit_Framework_TestCase
 
         $this->assertSame($expected, $this->note->getDescription());
     }
+    
+    /**
+     * @covers Siscourb\Ticket\Entity\Note::getUser
+     */
+    public function testGetUser()
+    {
+        $this->assertSame($this->user, $this->note->getUser());
+    }
+    
+    public function testGetTicket()
+    {
+        $this->assertSame($this->ticket, $this->note->getTicket());
+    }
 }

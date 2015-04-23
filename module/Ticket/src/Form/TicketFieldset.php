@@ -19,9 +19,10 @@
 
 namespace Siscourb\Ticket\Form;
 
-use Zend\Form\Fieldset;
-use DoctrineModule\Persistence\ObjectManagerAwareInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use DoctrineModule\Persistence\ObjectManagerAwareInterface;
+use Siscourb\Issue\Entity\Issue;
+use Zend\Form\Fieldset;
 
 /**
  * Description of TicketFieldset
@@ -88,13 +89,15 @@ class TicketFieldset extends Fieldset implements ObjectManagerAwareInterface
     {
         $this->add(array(
             'name' => 'description',
-            'type' => 'Zend\Form\Element\Text'
+            'type' => 'Zend\Form\Element\Text',
+            'options' => array('label' => 'Descrição'),
         ));
     }
 
     protected function addLocationFieldset($locationFieldset)
     {
         $locationFieldset->setName('location');
+        $this->locationFieldset->setOption('label', 'Localização');
         
         $this->add($locationFieldset);
     }
@@ -107,8 +110,8 @@ class TicketFieldset extends Fieldset implements ObjectManagerAwareInterface
             'options' => array(
                 'object_manager' => $this->getObjectManager(),
                 'target_class' => 'Siscourb\Issue\Entity\Issue',
-                'label_generator' => function ($targetEntity) {
-                    return $targetEntity->getName();
+                'label_generator' => function (Issue $issue) {
+                    return $issue->getName();
                 },
             ),
         ));

@@ -143,7 +143,7 @@ class Ticket
         }
         if ($this->status == self::STATUS_CLOSED) {
             $this->closeDate = null;
-            $this->reopenDate = new DateTime;
+            $this->reopenDate = new DateTime();
         }
         $this->status = self::STATUS_OPEN;
     }
