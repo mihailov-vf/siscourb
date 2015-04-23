@@ -23,6 +23,8 @@
         "php": ">=5.4",
         "zendframework/zendframework": "2.*",
         "doctrine/doctrine-orm-module": "0.*",
+        "doctrine/migrations": "dev-master",
+        "hounddog/doctrine-data-fixture-module": "dev-master@dev",
         
         "zf-commons/zfc-user-doctrine-orm": "@stable",
         "bjyoungblood/bjy-authorize": "@stable",
@@ -51,8 +53,6 @@
         "snapshotpl/zf-snap-event-debugger": "dev-master",
         "jhuet/zdt-logger-module": "dev-master",
         
-        "hounddog/doctrine-data-fixture-module": "dev-master@dev",
-        "doctrine/migrations": "dev-master",
         "phpunit/php-code-coverage": "@stable"
     }
 }

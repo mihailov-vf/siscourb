@@ -1,0 +1,25 @@
+build:
+  type: php
+  version: 5.6
+  stability: production
+  exec:
+    - "composer install --no-interaction --no-dev -vv"
+    - cp config/autoload/doctrine.prod.php.dist config/autoload/doctrine.local.php
+    - cp config/application.config.php.dist config/application.config.php
+    - vendor/bin/doctrine-module orm:schema-tool:create
+    - vendor/bin/doctrine-module data-fixture:import
+  lib_dir: vendor
+
+web1:
+  name: siscourb
+  type: php
+  version: 5.6
+  stability: production
+  httpd_document_root: public
+  php_extensions:
+    - pdo
+    - pdo_mysql
+
+database1:
+  name: siscourb
+  type: mysql

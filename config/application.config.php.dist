@@ -1,0 +1,32 @@
+<?php
+
+return array(
+    'modules' => array(
+        'TwbBundle',
+        'DoctrineModule',
+        'DoctrineORMModule',
+        'DoctrineDataFixtureModule',
+        'ZfcBase',
+        'ZfcUser',
+        'ZfcUserDoctrineORM',
+        'BjyAuthorize',
+        'MaglMarkdown',
+        
+        'Siscourb\Application',
+        'Siscourb\User',
+        'Siscourb\Organization',
+        'Siscourb\Issue',
+        'Siscourb\Ticket',
+    ),
+
+    'module_listener_options' => array(
+        'module_paths' => array(
+            './module',
+            './vendor',
+        ),
+
+        'config_glob_paths' => array(
+            'config/autoload/{,*.}{global,local}.php',
+        ),
+    ),
+);

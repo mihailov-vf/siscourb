@@ -14,10 +14,14 @@ return array(
         ),
         'connection' => array(
             'orm_default' => array(
-                'driverClass' => 'Doctrine\DBAL\Driver\PDOSqlite\Driver',
+                'driverClass' => 'Doctrine\DBAL\Driver\PDOMySql\Driver',
                 'params' => array(
-                    'path' => __DIR__ . '/../../data/siscourb.sqlite',
-                ),
+                    'host'     => DATABASE1_HOST,
+                    'port'     => DATABASE1_PORT,
+                    'user'     => DATABASE1_USER,
+                    'password' => DATABASE1_PASS,
+                    'dbname'   => DATABASE1_NAME,
+                )
             )
         ),
     ),
