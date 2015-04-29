@@ -36,8 +36,8 @@ return array(
                 ),
             ),
         ),
-//        'fixture' => array(
-//            'ticket_fixture' => __DIR__ . '/../src/Fixture',
-//        )
+        'fixture' => array(
+            'ticket_fixture' => __DIR__ . '/../src/Fixture',
+        )
     ),
 );
