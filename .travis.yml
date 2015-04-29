@@ -14,11 +14,11 @@ before_install:
   - composer self-update
 
 install:
-  - composer install
+  - composer install --prefer-source
 
 before_script:
   - composer require --dev --no-update phpunit/phpunit:@stable phpunit/php-code-coverage:@stable satooshi/php-coveralls:@dev
-  - composer update phpunit/php-code-coverage satooshi/php-coveralls
+  - composer update phpunit/php-code-coverage satooshi/php-coveralls --prefer-source
   - cp config/autoload/doctrine.test.php.dist config/autoload/doctrine.local.php
   - mkdir -p tests/build/data/
   - mkdir -p build/logs
