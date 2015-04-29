@@ -57,11 +57,15 @@ class TicketControllerTest extends PHPUnit_Framework_TestCase
     public function testConstruction()
     {
         $this->assertAttributeInstanceOf(
-                'Siscourb\Ticket\Repository\TicketRepository', 'ticketMapper', $this->ticketController
+            'Siscourb\Ticket\Repository\TicketRepository',
+            'ticketMapper',
+            $this->ticketController
         );
 
         $this->assertAttributeInstanceOf(
-                'Siscourb\Ticket\Form\TicketForm', 'ticketForm', $this->ticketController
+            'Siscourb\Ticket\Form\TicketForm',
+            'ticketForm',
+            $this->ticketController
         );
     }
 
@@ -90,8 +94,12 @@ class TicketControllerTest extends PHPUnit_Framework_TestCase
      */
     public function testAddActionReturnFormIfInvalidData()
     {
+        $this->markTestIncomplete(
+            'This test has not been implemented yet.'
+        );
+
         $model = Mockery::mock(new ViewModel([
-                    'form' => $this->ticketForm
+                'form' => $this->ticketForm
         ]));
 
         $pluginManager = $this->pluginManager();
@@ -102,8 +110,8 @@ class TicketControllerTest extends PHPUnit_Framework_TestCase
         $this->ticketForm->shouldReceive('isValid')->once()->andReturn(false);
 
         $flashMessenger->shouldReceive('addErrorMessage')
-                ->with('Os dado providenciados não são válidos')
-                ->once();
+            ->with('Os dado providenciados não são válidos')
+            ->once();
 
         $model->shouldReceive('setVariable')->with('form', $this->ticketForm)->once();
 
@@ -118,7 +126,7 @@ class TicketControllerTest extends PHPUnit_Framework_TestCase
     {
         // Remove the following lines when you implement this test.
         $this->markTestIncomplete(
-                'This test has not been implemented yet.'
+            'This test has not been implemented yet.'
         );
     }
 
@@ -130,7 +138,7 @@ class TicketControllerTest extends PHPUnit_Framework_TestCase
     {
         // Remove the following lines when you implement this test.
         $this->markTestIncomplete(
-                'This test has not been implemented yet.'
+            'This test has not been implemented yet.'
         );
     }
 
@@ -142,7 +150,7 @@ class TicketControllerTest extends PHPUnit_Framework_TestCase
     {
         // Remove the following lines when you implement this test.
         $this->markTestIncomplete(
-                'This test has not been implemented yet.'
+            'This test has not been implemented yet.'
         );
     }
 
@@ -154,7 +162,7 @@ class TicketControllerTest extends PHPUnit_Framework_TestCase
     {
         // Remove the following lines when you implement this test.
         $this->markTestIncomplete(
-                'This test has not been implemented yet.'
+            'This test has not been implemented yet.'
         );
     }
 
@@ -166,7 +174,7 @@ class TicketControllerTest extends PHPUnit_Framework_TestCase
     {
         // Remove the following lines when you implement this test.
         $this->markTestIncomplete(
-                'This test has not been implemented yet.'
+            'This test has not been implemented yet.'
         );
     }
 
@@ -178,12 +186,11 @@ class TicketControllerTest extends PHPUnit_Framework_TestCase
     {
         // Remove the following lines when you implement this test.
         $this->markTestIncomplete(
-                'This test has not been implemented yet.'
+            'This test has not been implemented yet.'
         );
     }
 
     /**
-     * 
      * @return PluginManager
      */
     protected function pluginManager()
@@ -198,7 +205,6 @@ class TicketControllerTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * 
      * @param PluginManager $pluginManager
      * @return Zend\Mvc\Controller\Plugin\PostRedirectGet
      */
@@ -212,15 +218,14 @@ class TicketControllerTest extends PHPUnit_Framework_TestCase
         $prg->setController($this->ticketController);
 
         $pluginManager->shouldReceive('get')
-                ->with('prg', Mockery::any())
-                ->andReturn($prg)
-                ->once();
+            ->with('prg', Mockery::any())
+            ->andReturn($prg)
+            ->once();
 
         return $prg;
     }
 
     /**
-     * 
      * @param PluginManager $pluginManager
      * @return \Zend\Mvc\Controller\Plugin\FlashMessenger
      */
@@ -233,9 +238,9 @@ class TicketControllerTest extends PHPUnit_Framework_TestCase
         $flashMessenger = Mockery::mock('Zend\Mvc\Controller\Plugin\FlashMessenger');
 
         $pluginManager->shouldReceive('get')
-                ->with('flashMessenger', Mockery::any())
-                ->andReturn($flashMessenger)
-                ->once();
+            ->with('flashMessenger', Mockery::any())
+            ->andReturn($flashMessenger)
+            ->once();
 
         return $flashMessenger;
     }
