@@ -21,7 +21,9 @@ namespace Siscourb\Ticket\Controller;
 
 use Siscourb\Ticket\Form\TicketForm;
 use Siscourb\Ticket\Mapper\TicketMapperInterface;
+use Zend\Http\PhpEnvironment\Response;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
 
 /**
  * Description of TicketController
@@ -49,15 +51,44 @@ class TicketController extends AbstractActionController
 
     public function listAction()
     {
-        $tickets = array();
+        $tickets = $this->ticketMapper->findAll();
 
         return array('tickets' => $tickets);
     }
 
     public function addAction()
     {
-        $form = $this->ticketForm;
-        return array('form' => $form);
+        $model = new ViewModel([
+            'form' => $this->ticketForm
+        ]);
+
+        $prg = $this->prg('ticket/add');
+
+        if ($prg instanceof Response) {
+            // returned a response to redirect us
+            return $prg;
+        } elseif ($prg === false) {
+            // this wasn't a POST request, but there were no params in the flash messenger
+            // probably this is the first time the form was loaded
+            return $model;
+        }
+
+        // $prg is an array containing the POST params from the previous request
+        $this->ticketForm->setData($prg);
+
+        $model->setVariable('form', $this->ticketForm);
+
+        if ($this->ticketForm->isValid()) {
+            $ticket = $this->ticketForm->getData();
+            $this->ticketMapper->insert($ticket);
+            
+            $this->flashMessenger()->addSuccessMessage('Chamado registrado com sucesso!');
+            
+            return $this->redirect()->toRoute('ticket');
+        }
+
+        $this->flashMessenger()->addErrorMessage('Os dado providenciados não são válidos');
+        return $model;
     }
 
     public function createAction()

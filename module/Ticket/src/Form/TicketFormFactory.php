@@ -19,7 +19,10 @@
 
 namespace Siscourb\Ticket\Form;
 
+use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use Siscourb\Ticket\Entity\Ticket;
+use Siscourb\Ticket\Filter\TicketFilter;
+use Zend\InputFilter\InputFilter;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -34,20 +37,27 @@ class TicketFormFactory implements FactoryInterface
     /**
      * @todo Binds Entity to Form
      * @param ServiceLocatorInterface $formManager
-     * @return \Siscourb\Ticket\Form\TicketForm
+     * @return TicketForm
      */
     public function createService(ServiceLocatorInterface $formManager)
     {
         $serviceManager = $formManager->getServiceLocator();
+        $objectManager = $serviceManager->get('Doctrine\ORM\EntityManager');
         
         $authService = $serviceManager->get('zfcuser_auth_service');
         $user = $authService->getIdentity();
         
+        
         $ticketFieldset = $formManager->get('Siscourb\Ticket\Form\TicketFieldset');
+        
+        $ticketFormFilter = new InputFilter();
+        $ticketFormFilter->add(new TicketFilter(), 'Ticket');
 
         $ticketForm = new TicketForm($ticketFieldset);
-//        $ticketForm->bind(new Ticket($user));
-        
+        $ticketForm->setInputFilter($ticketFormFilter);
+        $ticketForm->setHydrator(new DoctrineHydrator($objectManager));
+        $ticketForm->bind(new Ticket($user));
+                
         return $ticketForm;
     }
 }

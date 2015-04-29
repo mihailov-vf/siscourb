@@ -19,21 +19,21 @@ class TicketControllerTest extends AbstractHttpControllerTestCase
         parent::setUp();
 
         $this->setApplicationConfig(include 'config/application.config.php');
-        
+
         $serviceLocator = $this->getApplicationServiceLocator();
-        
+
         /** @var $entityManager \Doctrine\ORM\EntityManager */
         $entityManager = $serviceLocator->get('Doctrine\ORM\EntityManager');
         
         // Instantiate Schema Tool
         $tool = new SchemaTool($entityManager);
-        
+
         $classes = $entityManager->getMetaDataFactory()->getAllMetaData();
-        
+
         // Drop and Recreate Database
         $tool->dropSchema($classes);
         $tool->createSchema($classes);
-        
+
         // Instantiate Fixture Executor
         $loader = new ServiceLocatorAwareLoader($serviceLocator);
         $executor = new ORMExecutor($entityManager, new ORMPurger());
@@ -46,6 +46,9 @@ class TicketControllerTest extends AbstractHttpControllerTestCase
         }
         // Execute Fixtures
         $executor->execute($loader->getFixtures());
+        
+        //TODO Adicionar autenticação
+
     }
 
     public function testListActionCanBeAccessed()
