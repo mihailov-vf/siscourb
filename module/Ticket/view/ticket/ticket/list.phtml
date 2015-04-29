@@ -10,12 +10,18 @@
             <tr>
                 <td colspan="2">Sem chamados no momento</td>
             </tr>
-        <?php } else  ?>
-        <?php foreach ($tickets as $ticket) { ?>
-            <tr>
-                <td><?= $ticket->getIssue()->getName() ?></td>
-                <td><?= $ticket->getDescription() ?></td>
-            </tr>
-        <?php } ?>
+        <?php } else { ?>
+            <?php foreach ($tickets as $ticket) { ?>
+                <tr>
+                    <td>
+                        <?= $ticket->getIssue()->getName() ?>
+                        <a href="<?= $this->url('ticket/view', array('id' => $ticket->getId())) ?>">
+                            <i class="glyphicon glyphicon-file"></i>
+                        </a>
+                    </td>
+                    <td><?= $ticket->getDescription() ?></td>
+                </tr>
+            <?php }
+        } ?>
     </tbody>
 </table>

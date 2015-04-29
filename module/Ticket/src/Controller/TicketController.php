@@ -81,9 +81,9 @@ class TicketController extends AbstractActionController
         if ($this->ticketForm->isValid()) {
             $ticket = $this->ticketForm->getData();
             $this->ticketMapper->insert($ticket);
-            
+
             $this->flashMessenger()->addSuccessMessage('Chamado registrado com sucesso!');
-            
+
             return $this->redirect()->toRoute('ticket');
         }
 
@@ -98,7 +98,15 @@ class TicketController extends AbstractActionController
 
     public function viewAction()
     {
-        
+        $id = intval($this->params()->fromRoute('id'));
+
+        if ($id <= 0) {
+            $this->flashMessenger()->addErrorMessage("Chamado '$id' não encontrado!");
+            $this->redirect()->toRoute('ticket');
+        }
+
+        $ticket = $this->ticketMapper->findOneById($id);
+        return array('ticket' => $ticket);
     }
 
     public function addNoteAction()

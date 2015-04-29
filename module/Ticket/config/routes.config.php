@@ -35,12 +35,15 @@ return array(
                         ),
                         'may_terminate' => true,
                     ),
-                    'create' => array(
-                        'type' => 'Literal',
+                    'view' => array(
+                        'type' => 'Segment',
                         'options' => array(
-                            'route' => '/create',
+                            'route' => '/view/:id',
+                            'constraints' => array(
+                                'id' => '[0-9]+'
+                            ),
                             'defaults' => array(
-                                'action' => 'create',
+                                'action' => 'view',
                             ),
                         ),
                         'may_terminate' => true,
