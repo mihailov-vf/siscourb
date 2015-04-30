@@ -19,6 +19,7 @@
 
 namespace Siscourb\Ticket\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Siscourb\User\Entity\User;
 
@@ -72,10 +73,19 @@ class Note
      */
     private $user;
 
+    /**
+     * @var DateTime
+     *
+     * @ORM\Column(type="datetime")
+     */
+    private $creationDate;
+
     public function __construct(Ticket $ticket, User $user)
     {
         $this->ticket = $ticket;
         $this->user = $user;
+
+        $this->creationDate = new DateTime();
     }
 
     /**
@@ -101,7 +111,7 @@ class Note
     {
         return $this->description;
     }
-    
+
     public function getTicket()
     {
         return $this->ticket;
@@ -112,7 +122,11 @@ class Note
         return $this->user;
     }
 
-    
+    public function getCreationDate()
+    {
+        return $this->creationDate;
+    }
+
     /**
      * @param int $id
      */
