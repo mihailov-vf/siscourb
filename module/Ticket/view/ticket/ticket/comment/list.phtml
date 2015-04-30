@@ -1,0 +1,73 @@
+<div class="row">
+    <div class="col-md-8">
+        <h2 class="page-header">Comments</h2>
+        <section class="comment-list">
+            <?php foreach ($notes as $note) : ?>
+                <article class="row">
+                    <div class="col-md-2 col-sm-2 hidden-xs">
+                        <figure class="thumbnail">
+                            <?php echo $this->gravatar($note->getUser()->getEmail()) ?>
+                            <figcaption class="text-center">
+                                <?=
+                                $this->escapeHtml(
+                                    $note->getUser()->getDisplayName()
+                                )
+                                ?>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="col-md-10 col-sm-10">
+                        <div class="panel panel-default arrow left">
+                            <div class="panel-body">
+                                <header class="text-left">
+                                    <h4><?=
+                                        $this->escapeHtml(
+                                            $note->getTitle()
+                                        )
+                                        ?>
+                                    </h4>
+                                    <div class="comment-user"><i class="fa fa-user"></i> 
+                                        <?=
+                                        $this->escapeHtml(
+                                            $note->getUser()->getDisplayName()
+                                        )
+                                        ?>
+                                    </div>
+                                    <time class="comment-date" datetime="
+                                    <?=
+                                    $this->dateFormat(
+                                        $note->getCreationDate(), IntlDateFormatter::SHORT, // date
+                                        IntlDateFormatter::MEDIUM // time
+                                    )
+                                    ?>
+                                          ">
+                                        <i class="fa fa-clock-o"></i> 
+                                        <?=
+                                        $this->dateFormat(
+                                            $note->getCreationDate(), IntlDateFormatter::MEDIUM
+                                        )
+                                        ?>
+                                    </time>
+                                </header>
+                                <div class="comment-post">
+                                    <p>
+                                        <?=
+                                        $this->escapeHtml(
+                                            $note->getDescription()
+                                        )
+                                        ?>
+                                    </p>
+                                </div>
+                                <p class="text-right">
+                                    <a href="#" class="btn btn-default btn-sm">
+                                        <i class="fa fa-reply"></i> reply
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            <?php endforeach; ?>
+        </section>
+    </div>
+</div>

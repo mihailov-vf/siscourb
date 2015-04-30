@@ -1,43 +1,38 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-5">
-            <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://www.openstreetmap.org/export/embed.html?bbox=-46.80244445800781%2C-23.577832956897737%2C-46.27647399902344%2C-23.20537854438244&amp;layer=mapnik" style="position: relative; border: 1px solid black; width: 100%; height: 100%"></iframe>
-        </div>
-
-        <div class="col-md-7">
-            <h2><?= $ticket->getDescription() ?></h2>
-            
-        </div>
+<div class="row">
+    <div class="col-md-5">
+        <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://www.openstreetmap.org/export/embed.html?bbox=-46.80244445800781%2C-23.577832956897737%2C-46.27647399902344%2C-23.20537854438244&amp;layer=mapnik" style="position: relative; border: 1px solid black; width: 100%; height: 100%"></iframe>
     </div>
-    <div class="row">
-        <div class="col-md-8">
-            <h2 class="page-header">Comments</h2>
-            <section class="comment-list">    
-                <article class="row">
-                    <div class="col-md-2 col-sm-2 hidden-xs">
-                        <figure class="thumbnail">
-                            <img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
-                            <figcaption class="text-center">username</figcaption>
-                        </figure>
-                    </div>
-                    <div class="col-md-10 col-sm-10">
-                        <div class="panel panel-default arrow left">
-                            <div class="panel-body">
-                                <header class="text-left">
-                                    <div class="comment-user"><i class="fa fa-user"></i> That Guy</div>
-                                    <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> Dec 16, 2014</time>
-                                </header>
-                                <div class="comment-post">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                    </p>
-                                </div>
-                                <p class="text-right"><a href="#" class="btn btn-default btn-sm"><i class="fa fa-reply"></i> reply</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </section>
+
+    <div class="col-md-7">
+        <h2><?= $this->escapeHtml($ticket->getDescription()) ?></h2>
+        <time class="comment-date" datetime="
+        <?=
+        $this->dateFormat(
+            $ticket->getCreationDate(), IntlDateFormatter::SHORT, // date
+            IntlDateFormatter::MEDIUM // time
+        )
+        ?>
+              ">
+            <i class="fa fa-clock-o"></i> 
+            <?=
+            $this->dateFormat(
+                $ticket->getCreationDate(), IntlDateFormatter::MEDIUM
+            )
+            ?>
+        </time>
+        <div>
+            <i class="fa fa-exclamation-circle"></i>
+            <?= $this->escapeHtml($ticket->getIssue()->getName()) ?>
         </div>
     </div>
 </div>
+
+<?php
+echo $this->partial('comment/list.phtml', array(
+    'notes' => $ticket->getNotes()
+));
+?>
+
+<?php
+echo $this->partial('comment/box.phtml');
+?>
