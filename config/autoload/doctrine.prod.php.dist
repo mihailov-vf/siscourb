@@ -21,6 +21,7 @@ return array(
                     'user'     => DATABASE1_USER,
                     'password' => DATABASE1_PASS,
                     'dbname'   => DATABASE1_NAME,
+                    'charset'  => 'utf8'
                 )
             )
         ),
