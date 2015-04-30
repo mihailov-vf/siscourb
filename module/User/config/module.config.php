@@ -2,12 +2,15 @@
 
 return array(
     'view_manager' => array(
+        'template_map' => array(
+            'layout/user' => __DIR__ . '/../view/layout/user.phtml',
+        ),
         'template_path_stack' => array(
-            'User' => __DIR__ . '/../view',
+            'zfc-user' => __DIR__ . '/../view',
         ),
-        'controller_map' => array(
-            'Siscourb\User' => 'user',
-        ),
+//        'controller_map' => array(
+//            'Siscourb\User' => 'user',
+//        ),
     ),
     //doctrine config
     'doctrine' => array(
@@ -26,24 +29,21 @@ return array(
             'user_fixture' => __DIR__ . '/../src/Fixture',
         )
     ),
-    
     'zfcuser' => array(
         // telling ZfcUser to use our own class
-        'user_entity_class'       => 'Siscourb\User\Entity\User',
+        'user_entity_class' => 'Siscourb\User\Entity\User',
         // telling ZfcUserDoctrineORM to skip the entities it defines
         'enable_default_entities' => false,
     ),
-
     'bjyauthorize' => array(
         'default_role' => 'guest',
         // Using the authentication identity provider,
         // which basically reads the roles from the auth service's identity
         'identity_provider' => 'BjyAuthorize\Provider\Identity\AuthenticationIdentityProvider',
-
-        'role_providers'        => array(
+        'role_providers' => array(
             // using an object repository (entity repository) to load all roles into our ACL
             'BjyAuthorize\Provider\Role\ObjectRepositoryProvider' => array(
-                'object_manager'    => 'doctrine.entity_manager.orm_default',
+                'object_manager' => 'doctrine.entity_manager.orm_default',
                 'role_entity_class' => 'Siscourb\User\Entity\Role',
             ),
         ),
@@ -55,9 +55,9 @@ return array(
         'rule_providers' => array(
             'BjyAuthorize\Provider\Rule\Config' => array(
                 'allow' => array(
-                    array( array( 'user' ), 'menu', array( 'menu_user' ) ),
-                    array( array( 'manager', 'admin' ), 'menu', array( 'menu_manager' ) ),
-                    array( array( 'admin' ), 'menu', array( 'menu_admin' ) ),
+                    array(array('user'), 'menu', array('menu_user')),
+                    array(array('manager', 'admin'), 'menu', array('menu_manager')),
+                    array(array('admin'), 'menu', array('menu_admin')),
                 ),
             ),
         ),

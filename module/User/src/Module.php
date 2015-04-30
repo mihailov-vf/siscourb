@@ -24,15 +24,25 @@ namespace Siscourb\User;
  *
  * @author Mihailov Vasilievic Filho
  */
-
 use Zend\EventManager\EventInterface;
 use Zend\EventManager\StaticEventManager;
+use Zend\ModuleManager\ModuleManager;
 use Zend\Mvc\MvcEvent;
 use Zend\ServiceManager\ServiceManager;
 use Zend\Stdlib\ArrayUtils;
 
 class Module
 {
+
+    public function init(ModuleManager $manager)
+    {
+        $events = $manager->getEventManager();
+        $sharedEvents = $events->getSharedManager();
+        $sharedEvents->attach('ZfcUser', 'dispatch', function ($e) {
+            $controller = $e->getTarget();
+            $controller->layout('layout/user');
+        }, 100);
+    }
 
     public function onBootstrap(MvcEvent $e)
     {
