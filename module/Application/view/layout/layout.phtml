@@ -4,13 +4,14 @@
         <meta charset="utf-8">
         <?php echo $this->headTitle('SisCoUrb')->setSeparator(' - ')->setAutoEscape(false) ?>
 
-        <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0') ?>
+        <?php echo $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no') ?>
 
         <?php
         echo $this->headLink()
                 ->prependStylesheet('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
                 ->prependStylesheet('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
                 ->prependStylesheet('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')
+                ->prependStylesheet('http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css')
         ?>
 
         <!-- Scripts -->
@@ -18,6 +19,7 @@
         echo $this->headScript()
                 ->prependFile('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
                 ->prependFile('//code.jquery.com/jquery-2.1.1.min.js')
+                ->prependFile('http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js')
         ?>
 
         <script type='text/javascript'>
