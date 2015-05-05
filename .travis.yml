@@ -17,9 +17,7 @@ install:
   - composer install --prefer-source
 
 before_script:
-  - mysql -e 'create database IF NOT EXISTS siscourb;'
-  - composer require --dev --no-update phpunit/phpunit:@stable phpunit/php-code-coverage:@stable satooshi/php-coveralls:@dev
-  - composer update phpunit/php-code-coverage satooshi/php-coveralls --prefer-source
+  - mysql -e 'create database IF NOT EXISTS siscourb;' -U root
   - cp config/autoload/doctrine.travis.php.dist config/autoload/doctrine.local.php
   - mkdir -p tests/build/data/
   - mkdir -p build/logs
