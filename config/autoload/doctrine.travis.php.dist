@@ -12,7 +12,7 @@ return array(
                     'host'     => '127.0.0.1',
                     'user'     => 'root',
                     'password' => '',
-                    'dbname'   => 'siscourb',
+                    'dbname'   => 'myapp_test',
                     'charset'  => 'utf8'
                 )
             )

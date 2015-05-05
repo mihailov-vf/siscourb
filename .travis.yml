@@ -14,16 +14,16 @@ before_install:
   - composer self-update
 
 install:
-  - composer install --prefer-source
+  - composer install --prefer-source -v
 
 before_script:
-  - mysql -e 'create database IF NOT EXISTS siscourb;' -U root
+  - mysql -e 'create database myapp_test;'
   - cp config/autoload/doctrine.travis.php.dist config/autoload/doctrine.local.php
   - mkdir -p tests/build/data/
   - mkdir -p build/logs
   - wget https://scrutinizer-ci.com/ocular.phar
-  - vendor/bin/doctrine-module orm:schema-tool:create
-  - vendor/bin/doctrine-module data-fixture:import
+  - vendor/bin/doctrine-module orm:schema-tool:create -v
+  - vendor/bin/doctrine-module data-fixture:import -v
 
 script:
   - php vendor/bin/phpunit --coverage-clover build/logs/clover.xml --bootstrap tests/bootstrap.php --configuration tests/configuration.xml
