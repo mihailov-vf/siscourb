@@ -3,12 +3,11 @@ build:
   version: 5.6
   stability: production
   exec:
-    - "composer install --prefer-source --no-interaction --no-dev -vv"
+    - "composer install --no-interaction --no-dev -vv"
     - cp config/autoload/doctrine.prod.php.dist config/autoload/doctrine.local.php
     - cp config/application.config.php.dist config/application.config.php
-    - vendor/bin/doctrine-module orm:schema-tool:create
-    - vendor/bin/doctrine-module data-fixture:import
   lib_dir: vendor
+  reuse_libs: true
 
 web1:
   name: siscourb
@@ -17,9 +16,18 @@ web1:
   stability: production
   httpd_document_root: public
   php_extensions:
+    - apc
+    - curl
+    - gettext
+    - intl
     - pdo
     - pdo_mysql
+  before_deploy:
+    - vendor/bin/doctrine-module orm:schema-tool:drop --force
+    - vendor/bin/doctrine-module orm:schema-tool:create
+    - vendor/bin/doctrine-module data-fixture:import
 
 database1:
   name: siscourb
   type: mysql
+  topology: single

@@ -16,11 +16,11 @@ return array(
             'orm_default' => array(
                 'driverClass' => 'Doctrine\DBAL\Driver\PDOMySql\Driver',
                 'params' => array(
-                    'host'     => DATABASE1_HOST,
-                    'port'     => DATABASE1_PORT,
-                    'user'     => DATABASE1_USER,
-                    'password' => DATABASE1_PASS,
-                    'dbname'   => DATABASE1_NAME,
+                    'host'     => getenv("DATABASE1_HOST"),
+                    'port'     => getenv("DATABASE1_PORT"),
+                    'user'     => getenv("DATABASE1_USER"),
+                    'password' => getenv("DATABASE1_PASS"),
+                    'dbname'   => getenv("DATABASE1_NAME"),
                     'charset'  => 'utf8'
                 )
             )
