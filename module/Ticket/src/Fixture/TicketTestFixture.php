@@ -36,7 +36,7 @@ class TicketTestFixture extends AbstractFixture
         $issue = $objectManager->find('Siscourb\Issue\Entity\Issue', 1);
 
         $point = new \Siscourb\Ticket\ValueObject\Point(-46.80244445800781, -23.577832956897737);
-        $location = new \Siscourb\Ticket\Entity\Location($point, 'Guarulhos');
+        $location = new \Siscourb\Ticket\ValueObject\Location($point, 'Guarulhos');
 
         $ticket = new \Siscourb\Ticket\Entity\Ticket($user);
         $ticket->setDescription('Teste 1');

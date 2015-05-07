@@ -17,10 +17,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Siscourb\Ticket\Entity;
+namespace Siscourb\Ticket\ValueObject;
 
 use Doctrine\ORM\Mapping as ORM;
-use Siscourb\Ticket\ValueObject\Point;
 
 /**
  * Description of TicketLocation
@@ -33,7 +32,7 @@ class Location
 {
 
     /**
-     * @ORM\Column(type="point")
+     * @ORM\Embedded(class = "Siscourb\Ticket\ValueObject\Point", columnPrefix = "point_")
      *
      * @var Point
      */

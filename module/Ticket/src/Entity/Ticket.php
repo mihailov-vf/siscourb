@@ -23,7 +23,7 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Siscourb\Issue\Entity\Issue;
-use Siscourb\Ticket\Entity\Location;
+use Siscourb\Ticket\ValueObject\Location;
 use Siscourb\User\Entity\User;
 
 /**
@@ -81,7 +81,7 @@ class Ticket
     /**
      * @var Location
      *
-     * @ORM\Embedded(class = "Location", columnPrefix = "location_")
+     * @ORM\Embedded(class = "Siscourb\Ticket\ValueObject\Location", columnPrefix = "location_")
      */
     private $location;
 

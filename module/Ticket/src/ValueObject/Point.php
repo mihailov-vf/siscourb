@@ -19,21 +19,29 @@
 
 namespace Siscourb\Ticket\ValueObject;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Description of Point
  *
  * @author Mihailov Vasilievic Filho <mihailov.vf@gmail.com>
+ *
+ * @ORM\Embeddable
  */
 class Point
 {
 
     /**
      * @var float
+     *
+     * @ORM\Column(type="decimal")
      */
     protected $latitude;
 
     /**
      * @var float
+     *
+     * @ORM\Column(type="decimal")
      */
     protected $longitude;
 

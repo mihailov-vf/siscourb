@@ -14,30 +14,20 @@ return array(
     ),
     //doctrine config
     'doctrine' => array(
-        'configuration' => array(
-            'orm_default' => array(
-                'types' => array(
-                    'point' => 'Siscourb\Ticket\Type\PointType'
-                )
-            ),
-        ),
         'driver' => array(
             'ticket_entity' => array(
                 'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
-                'paths' => __DIR__ . '/../src/Entity',
+                'paths' => array(
+                    __DIR__ . '/../src/Entity',
+                    __DIR__ . '/../src/ValueObject',
+                ),
             ),
             'orm_default' => array(
                 'drivers' => array(
-                    'Siscourb\Ticket\Entity' => 'ticket_entity'
+                    'Siscourb\Ticket\Entity' => 'ticket_entity',
+                    'Siscourb\Ticket\ValueObject' => 'ticket_entity',
                 )
             )
-        ),
-        'connection' => array(
-            'orm_default' => array(
-                'doctrine_type_mappings' => array(
-                    'point' => 'point',
-                ),
-            ),
         ),
         'fixture' => array(
             'ticket_fixture' => __DIR__ . '/../src/Fixture',
