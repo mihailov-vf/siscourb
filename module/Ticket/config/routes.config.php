@@ -16,9 +16,12 @@ return array(
                 'may_terminate' => true,
                 'child_routes' => array(
                     'list' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
-                            'route' => '/list',
+                            'route' => '/list[/:export]',
+                            'constraints' => array(
+                                'id' => '[json]'
+                            ),
                             'defaults' => array(
                                 'action' => 'list',
                             ),

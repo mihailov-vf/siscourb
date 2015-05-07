@@ -8,6 +8,9 @@ return array(
         'controller_map' => array(
             'Siscourb\Ticket' => 'ticket',
         ),
+        'strategies' => array(
+            'ViewJsonStrategy',
+        ),
     ),
     //doctrine config
     'doctrine' => array(
