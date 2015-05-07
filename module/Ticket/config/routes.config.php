@@ -28,6 +28,19 @@ return array(
                         ),
                         'may_terminate' => true,
                     ),
+                    'export' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/list[/:export]',
+                            'constraints' => array(
+                                'export' => 'json|xml'
+                            ),
+                            'defaults' => array(
+                                'action' => 'get-list',
+                            ),
+                        ),
+                        'may_terminate' => true,
+                    ),
                     'add' => array(
                         'type' => 'Literal',
                         'options' => array(

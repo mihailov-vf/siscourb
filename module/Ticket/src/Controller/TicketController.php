@@ -51,17 +51,23 @@ class TicketController extends AbstractActionController
 
     public function listAction()
     {
-        if ($this->params()->fromRoute('export') == 'json') {
+        $tickets = $this->ticketMapper->findAll();
+
+        return array('tickets' => $tickets);
+    }
+
+    public function getListAction()
+    {
+        $format = $this->params()->fromRoute('export');
+        if ($format == 'json') {
             $tickets = $this->ticketMapper->getArrayList();
             $result = array('tickets' => $tickets);
             $json = new \Zend\View\Model\JsonModel($result);
 
             return $json;
         }
-        
-        $tickets = $this->ticketMapper->findAll();
 
-        return array('tickets' => $tickets);
+        return new \Zend\View\Model\JsonModel(array('error' => "Not supported '$format' format."));
     }
 
     public function addAction()
