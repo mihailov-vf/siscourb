@@ -51,4 +51,18 @@ class TicketRepository extends EntityRepository implements TicketMapperInterface
         $this->_em->remove($ticket);
         $this->_em->flush($ticket);
     }
+
+    /**
+     * @see \Siscourb\Ticket\Mapper\TicketMapperInterface::getArrayList
+     */
+    public function getArrayList($filter = null)
+    {
+        $queryBuilder = $this->getEntityManager()->createQueryBuilder();
+        $queryBuilder->select('t')
+            ->from('Siscourb\Ticket\Entity\Ticket', 't');
+
+        $results = $queryBuilder->getQuery()
+            ->getResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);
+        return $results;
+    }
 }

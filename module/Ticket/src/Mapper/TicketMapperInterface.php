@@ -45,4 +45,10 @@ interface TicketMapperInterface
      * @return void
      */
     public function delete(Ticket $ticket);
+
+    /**
+     * @param array|null $filter
+     * @return array
+     */
+    public function getArrayList($filter = null);
 }
