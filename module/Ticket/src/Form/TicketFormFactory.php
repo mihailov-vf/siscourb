@@ -47,8 +47,10 @@ class TicketFormFactory implements FactoryInterface
         $authService = $serviceManager->get('zfcuser_auth_service');
         $user = $authService->getIdentity();
         
+        $ticket = new Ticket($user);
         
         $ticketFieldset = $formManager->get('Siscourb\Ticket\Form\TicketFieldset');
+        $ticketFieldset->setObject($ticket);
         
         $ticketFormFilter = new InputFilter();
         $ticketFormFilter->add(new TicketFilter(), 'Ticket');
@@ -56,7 +58,7 @@ class TicketFormFactory implements FactoryInterface
         $ticketForm = new TicketForm($ticketFieldset);
         $ticketForm->setInputFilter($ticketFormFilter);
         $ticketForm->setHydrator(new DoctrineHydrator($objectManager));
-        $ticketForm->bind(new Ticket($user));
+        $ticketForm->bind($ticket);
                 
         return $ticketForm;
     }

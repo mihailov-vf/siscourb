@@ -36,11 +36,11 @@ class TicketFieldsetFactory implements FactoryInterface
         $serviceManager = $formManager->getServiceLocator();
 
         $objectManager = $serviceManager->get('Doctrine\ORM\EntityManager');
-
-        $locationFieldset = $formManager->get('Siscourb\Ticket\Form\LocationFieldset');
         
+        $locationFieldset = $formManager->get('Siscourb\Ticket\Form\LocationFieldset');
+
         $ticketFieldset = new TicketFieldset($locationFieldset);
-        $ticketHydrator = new DoctrineHydrator($objectManager, 'Siscourb\Ticket\Entity\Ticket');
+        $ticketHydrator = new DoctrineHydrator($objectManager);
 
         $ticketFieldset->setHydrator($ticketHydrator);
 

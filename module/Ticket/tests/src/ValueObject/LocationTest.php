@@ -33,9 +33,9 @@ class LocationTest extends PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->point = new Point(-23.550389, -46.633973);
+        $this->point = array('lat' => -23.550389, 'lon' => -46.633973);
         $this->address = 'Marco zero de São Paulo - Praça da Sé';
-        $this->location = new Location($this->point, $this->address);
+        $this->location = new Location($this->point['lat'], $this->point['lon'], $this->address);
     }
 
     /**
@@ -52,16 +52,25 @@ class LocationTest extends PHPUnit_Framework_TestCase
      */
     public function testConstructParams()
     {
-        $this->assertAttributeSame($this->point, 'point', $this->location);
+        $this->assertAttributeSame($this->point['lat'], 'latitude', $this->location);
+        $this->assertAttributeSame($this->point['lon'], 'longitude', $this->location);
         $this->assertAttributeSame($this->address, 'address', $this->location);
     }
 
     /**
-     * @covers Siscourb\Ticket\ValueObject\Location::getPoint
+     * @covers Siscourb\Ticket\ValueObject\Location::getLatitude
      */
-    public function testGetPoint()
+    public function testGetLatitude()
     {
-        $this->assertSame($this->point, $this->location->getPoint());
+        $this->assertSame($this->point['lat'], $this->location->getLatitude());
+    }
+    
+    /**
+     * @covers Siscourb\Ticket\ValueObject\Location::getLongitude
+     */
+    public function testGetLongitude()
+    {
+        $this->assertSame($this->point['lon'], $this->location->getLongitude());
     }
 
     /**

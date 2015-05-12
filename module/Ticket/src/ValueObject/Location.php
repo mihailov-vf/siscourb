@@ -32,11 +32,18 @@ class Location
 {
 
     /**
-     * @ORM\Embedded(class = "Siscourb\Ticket\ValueObject\Point", columnPrefix = "point_")
+     * @var float
      *
-     * @var Point
+     * @ORM\Column(type="decimal", precision=21, scale=17)
      */
-    private $point;
+    protected $latitude;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(type="decimal", precision=21, scale=17)
+     */
+    protected $longitude;
 
     /**
      * @ORM\Column(type="string")
@@ -44,19 +51,28 @@ class Location
      * @var string
      */
     private $address;
-    
-    public function __construct(Point $point, $address)
+
+    public function __construct($latitude, $longitude, $address)
     {
-        $this->point = $point;
+        $this->latitude = floatval($latitude);
+        $this->longitude = floatval($longitude);
         $this->address = $address;
     }
 
-        /**
-     * @return Point
+    /**
+     * @return float
      */
-    public function getPoint()
+    public function getLatitude()
     {
-        return $this->point;
+        return $this->latitude;
+    }
+
+    /**
+     * @return float
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
     }
 
     /**

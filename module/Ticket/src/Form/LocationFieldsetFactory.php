@@ -34,14 +34,19 @@ class LocationFieldsetFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $formManager)
     {
         $serviceManager = $formManager->getServiceLocator();
-        
+
         $objectManager = $serviceManager->get('Doctrine\ORM\EntityManager');
-        
+
         $locationFieldset = new LocationFieldset();
-        $locationHydrator = new DoctrineHydrator($objectManager, 'Siscourb\Ticket\Entity\Location');
-        
+        //false para acessar os atributos da clase diretamente (Reflection)
+        $locationHydrator = new DoctrineHydrator($objectManager, false);
+
         $locationFieldset->setHydrator($locationHydrator);
-        
+        //TODO: Incluir atributos do VO Point para Location
+        $locationFieldset->setObject(
+            new \Siscourb\Ticket\ValueObject\Location(0, 0, '')
+        );
+
         return $locationFieldset;
     }
 }

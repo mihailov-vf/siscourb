@@ -35,30 +35,33 @@ class TicketTestFixture extends AbstractFixture
         $user = $objectManager->find('Siscourb\User\Entity\User', 1);
         $issue = $objectManager->find('Siscourb\Issue\Entity\Issue', 1);
 
-        $point = new \Siscourb\Ticket\ValueObject\Point(-46.80244445800781, -23.577832956897737);
-        $location = new \Siscourb\Ticket\ValueObject\Location($point, 'Guarulhos');
+        $location = new \Siscourb\Ticket\ValueObject\Location(
+            -46.80244445800781,
+            -23.577832956897737,
+            'Guarulhos'
+        );
 
         $ticket = new \Siscourb\Ticket\Entity\Ticket($user);
         $ticket->setDescription('Teste 1');
         $ticket->setIssue($issue);
         $ticket->setLocation($location);
-        
+
         $objectManager->persist($ticket);
         $objectManager->flush();
-        
+
         $ticket2 = new \Siscourb\Ticket\Entity\Ticket($user);
         $ticket2->setDescription('Teste 2');
         $ticket2->setIssue($issue);
         $ticket2->setLocation($location);
-        
+
         $objectManager->persist($ticket2);
         $objectManager->flush();
-        
+
         $ticket3 = new \Siscourb\Ticket\Entity\Ticket($user);
         $ticket3->setDescription('Teste 3');
         $ticket3->setIssue($issue);
         $ticket3->setLocation($location);
-        
+
         $objectManager->persist($ticket3);
         $objectManager->flush();
     }

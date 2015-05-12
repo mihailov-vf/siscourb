@@ -38,7 +38,6 @@ class TicketFieldset extends Fieldset implements ObjectManagerAwareInterface
      */
     private $locationFieldset;
 
-
     /**
      * @var ObjectManager
      */
@@ -59,13 +58,13 @@ class TicketFieldset extends Fieldset implements ObjectManagerAwareInterface
     {
         return $this->objectManager;
     }
-    
+
     public function init()
     {
         $this->addIdField();
         $this->addUserField();
         $this->addDescriptionField();
-        $this->addLocationFieldset($this->locationFieldset);
+        $this->addLocationFieldset();
         $this->addIssueField();
     }
 
@@ -94,11 +93,9 @@ class TicketFieldset extends Fieldset implements ObjectManagerAwareInterface
         ));
     }
 
-    protected function addLocationFieldset($locationFieldset)
+    protected function addLocationFieldset()
     {
-        $locationFieldset->setName('location');
-        
-        $this->add($locationFieldset);
+        $this->add($this->locationFieldset, array('name' => 'location'));
     }
 
     protected function addIssueField()

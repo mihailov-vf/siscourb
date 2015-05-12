@@ -28,16 +28,26 @@ use Zend\Form\Fieldset;
  */
 class LocationFieldset extends Fieldset
 {
+
+    /**
+     * @var Fieldset
+     */
+    private $pointFieldset;
+
     public function __construct()
     {
         parent::__construct('LocationFieldset');
-        
+
         $this->add(array(
-            'name' => 'point',
-            'type' => 'Zend\Form\Element\Text',
-            'options' => array('label' => 'Latitude e longitude'),
+            'name' => 'latitude',
+            'type' => 'Zend\Form\Element\Hidden',
         ));
-        
+
+        $this->add(array(
+            'name' => 'longitude',
+            'type' => 'Zend\Form\Element\Hidden',
+        ));
+
         $this->add(array(
             'name' => 'address',
             'type' => 'Zend\Form\Element\Text',

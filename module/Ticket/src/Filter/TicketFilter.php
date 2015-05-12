@@ -60,11 +60,6 @@ class TicketFilter extends InputFilter
         ));
         
         $this->add(array(
-            'name' => 'location',
-            'required' => true,
-        ));
-        
-        $this->add(array(
             'name' => 'issue',
             'required' => true,
         ));
