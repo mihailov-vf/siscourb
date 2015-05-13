@@ -55,11 +55,26 @@ class TicketRepository extends EntityRepository implements TicketMapperInterface
     /**
      * @see \Siscourb\Ticket\Mapper\TicketMapperInterface::getArrayList
      */
-    public function getArrayList($filter = null)
+    public function getGeoLocationArrayList($filter = array())
     {
         $queryBuilder = $this->getEntityManager()->createQueryBuilder();
-        $queryBuilder->select('t')
-            ->from('Siscourb\Ticket\Entity\Ticket', 't');
+        $queryBuilder->select(
+            't.id,'
+            . ' t.status,'
+            . ' t.description,'
+            . ' t.location.latitude,'
+            . ' t.location.longitude,'
+            . ' t.location.address'
+        )->from('Siscourb\Ticket\Entity\Ticket', 't');
+
+        if (!empty($filter)) {
+            $where = $queryBuilder->expr()->andX();
+            foreach (array_keys($filter) as $key) {
+                $where->add($queryBuilder->expr()->eq("t.$key", ":$key"));
+            }
+            $queryBuilder->where($where);
+            $queryBuilder->setParameters($filter);
+        }
 
         $results = $queryBuilder->getQuery()
             ->getResult(\Doctrine\ORM\AbstractQuery::HYDRATE_ARRAY);

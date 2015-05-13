@@ -50,5 +50,5 @@ interface TicketMapperInterface
      * @param array|null $filter
      * @return array
      */
-    public function getArrayList($filter = null);
+    public function getGeoLocationArrayList($filter = null);
 }

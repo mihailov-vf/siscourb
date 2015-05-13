@@ -18,28 +18,27 @@ return array(
                     'list' => array(
                         'type' => 'Segment',
                         'options' => array(
-                            'route' => '/list[/:export]',
-                            'constraints' => array(
-                                'id' => '[json]'
-                            ),
+                            'route' => '/list',
                             'defaults' => array(
                                 'action' => 'list',
                             ),
                         ),
                         'may_terminate' => true,
-                    ),
-                    'export' => array(
-                        'type' => 'Segment',
-                        'options' => array(
-                            'route' => '/list[/:export]',
-                            'constraints' => array(
-                                'export' => 'json|xml'
-                            ),
-                            'defaults' => array(
-                                'action' => 'get-list',
+                        'child_routes' => array(
+                            'export' => array(
+                                'type' => 'Segment',
+                                'options' => array(
+                                    'route' => '/:export',
+                                    'constraints' => array(
+                                        'export' => 'json|xml'
+                                    ),
+                                    'defaults' => array(
+                                        'action' => 'export',
+                                    ),
+                                ),
+                                'may_terminate' => true,
                             ),
                         ),
-                        'may_terminate' => true,
                     ),
                     'add' => array(
                         'type' => 'Literal',
@@ -63,6 +62,21 @@ return array(
                             ),
                         ),
                         'may_terminate' => true,
+                        'child_routes' => array(
+                            'export' => array(
+                                'type' => 'Segment',
+                                'options' => array(
+                                    'route' => '/:export',
+                                    'constraints' => array(
+                                        'export' => 'json|xml'
+                                    ),
+                                    'defaults' => array(
+                                        'action' => 'export',
+                                    ),
+                                ),
+                                'may_terminate' => true,
+                            ),
+                        ),
                     ),
                 ),
             ),

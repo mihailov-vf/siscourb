@@ -56,12 +56,22 @@ class TicketController extends AbstractActionController
         return array('tickets' => $tickets);
     }
 
-    public function getListAction()
+    public function exportAction()
     {
+        $filter = '';
+
         $format = $this->params()->fromRoute('export');
+        $id = $this->params()->fromRoute('id');
+        if ($id) {
+            $filter = array(
+                'id' => $id
+            );
+        }
+
+        $tickets = $this->ticketMapper->getGeoLocationArrayList($filter);
+        $result = array('tickets' => $tickets);
+
         if ($format == 'json') {
-            $tickets = $this->ticketMapper->getArrayList();
-            $result = array('tickets' => $tickets);
             $json = new \Zend\View\Model\JsonModel($result);
 
             return $json;
