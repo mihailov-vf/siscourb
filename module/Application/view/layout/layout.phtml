@@ -8,17 +8,20 @@
 
         <?php
         echo $this->headLink()
-                ->prependStylesheet('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
-                ->prependStylesheet('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')
-                ->prependStylesheet('http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css')
+            ->prependStylesheet('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css')
+            ->prependStylesheet('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css')
+            ->prependStylesheet('http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css')
+            ->prependStylesheet('//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css')
         ?>
 
         <!-- Scripts -->
         <?php
         echo $this->headScript()
-                ->prependFile('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
-                ->prependFile('//code.jquery.com/jquery-2.1.1.min.js')
-                ->prependFile('http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js')
+            ->prependFile('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js')
+            ->prependFile('http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js')
+            ->prependFile('//code.jquery.com/ui/1.11.4/jquery-ui.min.js')
+            ->prependFile('//code.jquery.com/jquery-2.1.1.min.js')
+            
         ?>
 
         <script type='text/javascript'>
@@ -60,21 +63,21 @@
             </div>
         </nav>
         <div class="container">
-                <?php
-                $flash = $this->flashMessenger();
-                $flash->setMessageOpenFormat(
-                        '<div%s>
+            <?php
+            $flash = $this->flashMessenger();
+            $flash->setMessageOpenFormat(
+                    '<div%s>
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
                             &times;
                         </button>
                         <ul><li>'
-                        )->setMessageSeparatorString('</li><li>')
-                        ->setMessageCloseString('</li></ul></div>');
-                echo $flash->render('error', array('alert', 'alert-dismissible', 'alert-danger'));
-                echo $flash->render('info', array('alert', 'alert-dismissible', 'alert-info'));
-                echo $flash->render('warning', array('alert', 'alert-dismissible', 'alert-warning'));
-                echo $flash->render('success', array('alert', 'alert-dismissible', 'alert-success'));
-                ?>
+                )->setMessageSeparatorString('</li><li>')
+                ->setMessageCloseString('</li></ul></div>');
+            echo $flash->render('error', array('alert', 'alert-dismissible', 'alert-danger'));
+            echo $flash->render('info', array('alert', 'alert-dismissible', 'alert-info'));
+            echo $flash->render('warning', array('alert', 'alert-dismissible', 'alert-warning'));
+            echo $flash->render('success', array('alert', 'alert-dismissible', 'alert-success'));
+            ?>
             <?= $this->content; ?>
         </div>
     </body>

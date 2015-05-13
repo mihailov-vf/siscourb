@@ -1,18 +1,23 @@
+<style>
+    #map {
+        height: 150px;
+        width: 100%;
+    }
+</style>
+
 <div class="row">
     <div class="col-md-5">
-        <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://www.openstreetmap.org/export/embed.html?bbox=-46.80244445800781%2C-23.577832956897737%2C-46.27647399902344%2C-23.20537854438244&amp;layer=mapnik" style="position: relative; border: 1px solid black; width: 100%; height: 100%"></iframe>
+        <div id="map"></div>
     </div>
 
     <div class="col-md-7">
         <h2><?= $this->escapeHtml($ticket->getDescription()) ?></h2>
-        <time class="comment-date" datetime="
-        <?=
+        <time class="comment-date" datetime="<?=
         $this->dateFormat(
             $ticket->getCreationDate(), IntlDateFormatter::SHORT, // date
             IntlDateFormatter::MEDIUM // time
         )
-        ?>
-              ">
+        ?>">
             <i class="fa fa-clock-o"></i> 
             <?=
             $this->dateFormat(
@@ -36,3 +41,18 @@ echo $this->partial('comment/list.phtml', array(
 <?php
 echo $this->partial('comment/box.phtml');
 ?>
+
+<script>
+    var map = L.map('map');
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+                '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+        id: 'examples.map-i875mjb7'
+    }).addTo(map);
+
+    map.setView([<?= $ticket->getLocation()->getLatitude() . ',' . $ticket->getLocation()->getLongitude() ?>], 16);
+    L.marker([<?= $ticket->getLocation()->getLatitude() . ',' . $ticket->getLocation()->getLongitude() ?>]).addTo(map);
+</script>
