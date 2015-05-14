@@ -34,14 +34,14 @@ class Location
     /**
      * @var float
      *
-     * @ORM\Column(type="decimal", precision=21, scale=17)
+     * @ORM\Column(type="float")
      */
     protected $latitude;
 
     /**
      * @var float
      *
-     * @ORM\Column(type="decimal", precision=21, scale=17)
+     * @ORM\Column(type="float")
      */
     protected $longitude;
 
