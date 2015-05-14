@@ -21,6 +21,7 @@ before_script:
   - cp config/autoload/doctrine.travis.php.dist config/autoload/doctrine.local.php
   - mkdir -p tests/build/data/
   - mkdir -p build/logs
+  - mkdir -p public/cache/
   - wget https://scrutinizer-ci.com/ocular.phar
   - vendor/bin/doctrine-module orm:schema-tool:create -v
   - vendor/bin/doctrine-module data-fixture:import -v
