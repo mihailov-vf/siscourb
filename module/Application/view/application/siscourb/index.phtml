@@ -9,15 +9,25 @@
 </style>
 
 <div id="map"></div>
+<script src="/cache/leaflet-geosearch/src/js/l.control.geosearch.js"></script>
+<script src="/cache/leaflet-geosearch/src/js/l.geosearch.provider.google.js"></script>
+<link rel="stylesheet" href="/cache/leaflet-geosearch/src/css/l.geosearch.css" />
 <script src="/js/map.js" type="text/javascript"></script>
 <script type="text/javascript">
+    new L.Control.GeoSearch({
+        provider: new L.GeoSearch.Provider.Google(),
+        showMarker: false,
+    }).addTo(map);
+
     $.ajax({
         url: "<?= $this->url('ticket/list/export', ['export' => 'json']) ?>",
         dataType: "json",
         success: function (data) {
             geojsonLayer.addData(data);
+
+            markers.addLayer(geojsonLayer);
         }
     });
-    
+
     map.locate({setView: true, maxZoom: 16});
 </script>

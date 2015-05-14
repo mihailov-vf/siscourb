@@ -96,7 +96,7 @@ var satellite_layer = new L.TileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/sat
     attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a>.'
 });
 
-var geojsonLayer = new L.GeoJSON(
+var geojsonLayer = new L.geoJson(
     null,
     {
         onEachFeature: function (feature, layer) {
@@ -116,14 +116,16 @@ var geojsonLayer = new L.GeoJSON(
     }
 );
 
+var markers = L.markerClusterGroup();
+
 var map = new L.Map('map', {
     layers: [
         road_layer,
-        geojsonLayer
+        markers
     ]
 });
 
-L.control.layers({'Road': road_layer}, {'Tickets': geojsonLayer}).addTo(map);
+L.control.layers({'Road': road_layer}, {'Tickets': markers}).addTo(map);
 
 function onLocationFound(e)
 {
@@ -143,13 +145,14 @@ map.on('locationfound', onLocationFound);
 map.on('locationerror', onLocationError);
 map.on('popupopen', function (centerMarker) {
     var cM = map.project(centerMarker.popup._latlng);
+    cM.y -= centerMarker.popup._container.clientHeight/2;
     map.setView(map.unproject(cM), map._zoom, {animate: true});
 });
 
-var popup = L.popup();
-
 function onMapClick(e)
 {
+    var popup = L.popup();
+    
     $.ajax({
         url: '/ticket/add',
         data: 'ajax=1'

@@ -50,7 +50,8 @@ echo $this->partial('comment/box.phtml');
         success: function (data) {
             geojsonLayer.addData(data);
             
-            map.fitBounds(geojsonLayer.getBounds());
+            map.addLayer(geojsonLayer);
+            map.fitBounds(geojsonLayer.getBounds(),{maxZoom:16});
         }
     });
 </script>
