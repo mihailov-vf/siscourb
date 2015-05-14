@@ -32,12 +32,10 @@ class TicketControllerFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $controllerManager)
     {
         $serviceManager = $controllerManager->getServiceLocator();
-        $formManager = $serviceManager->get('FormElementManager');
+        
         
         $ticketMapper = $serviceManager->get('Siscourb\Ticket\Mapper\TicketMapper');
         
-        $ticketForm = $formManager->get('Siscourb\Ticket\Form\TicketForm');
-        
-        return new TicketController($ticketMapper, $ticketForm);
+        return new TicketController($ticketMapper);
     }
 }

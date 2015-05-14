@@ -58,5 +58,10 @@ return array(
                 ),
             ),
         ),
+        'guards' => array(
+            'BjyAuthorize\Guard\Controller' => array(
+                array('controller' => 'zfcuser', 'roles' => array()),
+            )
+        )
     ),
 );

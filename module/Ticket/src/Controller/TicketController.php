@@ -43,10 +43,22 @@ class TicketController extends AbstractActionController
      */
     private $ticketForm;
 
-    public function __construct(TicketMapperInterface $ticketMapper, TicketForm $ticketForm)
+    public function __construct(TicketMapperInterface $ticketMapper)
     {
         $this->ticketMapper = $ticketMapper;
-        $this->ticketForm = $ticketForm;
+    }
+
+    /**
+     * @return TicketForm
+     */
+    public function getTicketForm()
+    {
+        if (!$this->ticketForm) {
+            $formManager = $this->getServiceLocator()->get('FormElementManager');
+            $this->ticketForm = $formManager->get('Siscourb\Ticket\Form\TicketForm');
+        }
+        
+        return $this->ticketForm;
     }
 
     public function listAction()
@@ -81,7 +93,7 @@ class TicketController extends AbstractActionController
     public function addAction()
     {
         $model = new ViewModel([
-            'form' => $this->ticketForm
+            'form' => $this->getTicketForm()
         ]);
 
         if ($this->params()->fromQuery('ajax') == 1) {
@@ -100,12 +112,12 @@ class TicketController extends AbstractActionController
         }
 
         // $prg is an array containing the POST params from the previous request
-        $this->ticketForm->setData($prg);
+        $this->getTicketForm()->setData($prg);
 
-        $model->setVariable('form', $this->ticketForm);
+        $model->setVariable('form', $this->getTicketForm());
 
-        if ($this->ticketForm->isValid()) {
-            $ticket = $this->ticketForm->getData();
+        if ($this->getTicketForm()->isValid()) {
+            $ticket = $this->getTicketForm()->getData();
             $this->ticketMapper->insert($ticket);
 
             $this->flashMessenger()->addSuccessMessage('Chamado registrado com sucesso!');

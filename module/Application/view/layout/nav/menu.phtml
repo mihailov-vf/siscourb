@@ -1,0 +1,17 @@
+<ul class="nav navbar-nav">
+    <?php if ($this->isAllowed('menu', 'menu_user')): ?>
+        <li><a href="<?= $this->url('zfcuser/logout'); ?>">Logout</a></li>
+        <li><a href="<?= $this->url('zfcuser'); ?>">Perfil</a></li>
+    <?php else: ?>
+        <li><a href="<?= $this->url('zfcuser/login'); ?>">Login</a></li>
+        <li><a href="<?= $this->url('zfcuser/register'); ?>">Cadastrar-se</a></li>
+    <?php endif; ?>
+    <li><a href="<?php echo $this->url('ticket'); ?>">Chamados</a></li>
+    <?php if ($this->isAllowed('menu', 'menu_manager')): ?>
+        <li><a href="<?= ''//$this->url('organization'); ?>">Organização</a></li>
+    <?php endif; ?>
+    <?php if ($this->isAllowed('menu', 'menu_admin')): ?>
+        <li><a href="<?= ''//$this->url('admin'); ?>">Admin</a></li>
+    <?php endif; ?>
+    <li><a href="<?= $this->url('siscourb/about'); ?>">Sobre</a></li>
+</ul>

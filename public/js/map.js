@@ -150,15 +150,23 @@ var popup = L.popup();
 
 function onMapClick(e)
 {
-    var data = {
-        ajax: 1
-    };
-    
-    $.get('/ticket/add', data, function (template) {
+    $.ajax({
+        url: '/ticket/add',
+        data: 'ajax=1'
+    })
+    .done(function (template) {
         popup.setLatLng(e.latlng).setContent(template).openOn(map);
-        
+
         $('input[name="Ticket[location][latitude]"]').val(e.latlng.lat);
         $('input[name="Ticket[location][longitude]"]').val(e.latlng.lng);
+    })
+    .fail(function (jqXHR) {
+        var data = '';
+        if (jqXHR.status == 403) {
+            data = '<h3>You are not allowed to do this. Please Login.</h3>';
+        }
+
+        popup.setLatLng(e.latlng).setContent(data).openOn(map);
     });
 }
 

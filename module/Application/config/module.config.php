@@ -51,4 +51,14 @@ return array(
             'Siscourb\Application' => 'application',
         ),
     ),
+    'bjyauthorize' => array(
+        'guards' => array(
+            'BjyAuthorize\Guard\Controller' => array(
+                array(
+                    'controller' => 'Siscourb\Application\Controller\Siscourb',
+                    'roles' => array()
+                ),
+            ),
+        ),
+    ),
 );
