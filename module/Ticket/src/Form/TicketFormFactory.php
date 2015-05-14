@@ -35,7 +35,6 @@ class TicketFormFactory implements FactoryInterface
 {
 
     /**
-     * @todo Binds Entity to Form
      * @param ServiceLocatorInterface $formManager
      * @return TicketForm
      */

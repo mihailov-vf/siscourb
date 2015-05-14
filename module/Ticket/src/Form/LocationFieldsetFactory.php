@@ -42,7 +42,7 @@ class LocationFieldsetFactory implements FactoryInterface
         $locationHydrator = new DoctrineHydrator($objectManager, false);
 
         $locationFieldset->setHydrator($locationHydrator);
-        //TODO: Incluir atributos do VO Point para Location
+
         $locationFieldset->setObject(
             new \Siscourb\Ticket\ValueObject\Location(0, 0, '')
         );

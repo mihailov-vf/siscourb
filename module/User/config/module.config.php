@@ -8,9 +8,6 @@ return array(
         'template_path_stack' => array(
             'zfc-user' => __DIR__ . '/../view',
         ),
-//        'controller_map' => array(
-//            'Siscourb\User' => 'user',
-//        ),
     ),
     //doctrine config
     'doctrine' => array(

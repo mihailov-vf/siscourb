@@ -29,11 +29,6 @@ use Zend\Form\Fieldset;
 class LocationFieldset extends Fieldset
 {
 
-    /**
-     * @var Fieldset
-     */
-    private $pointFieldset;
-
     public function __construct()
     {
         parent::__construct('LocationFieldset');

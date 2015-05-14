@@ -58,15 +58,10 @@ class TicketController extends AbstractActionController
 
     public function exportAction()
     {
-        $filter = '';
-
         $format = $this->params()->fromRoute('export');
         $id = $this->params()->fromRoute('id');
         if ($id) {
-            $filter = array(
-                'id' => $id
-            );
-            $tickets = $this->ticketMapper->findBy($filter);
+            $tickets = $this->ticketMapper->findById($id);
         } else {
             $tickets = $this->ticketMapper->findAll();
         }

@@ -38,7 +38,7 @@ class Module
     {
         $events = $manager->getEventManager();
         $sharedEvents = $events->getSharedManager();
-        $sharedEvents->attach('ZfcUser', 'dispatch', function ($e) {
+        $sharedEvents->attach('ZfcUser', 'dispatch', function (EventInterface $e) {
             $controller = $e->getTarget();
             $controller->layout('layout/user');
         }, 100);
