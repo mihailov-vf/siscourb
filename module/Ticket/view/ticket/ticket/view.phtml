@@ -42,17 +42,15 @@ echo $this->partial('comment/list.phtml', array(
 echo $this->partial('comment/box.phtml');
 ?>
 
-<script>
-    var map = L.map('map');
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 18,
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-                '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-                'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-        id: 'examples.map-i875mjb7'
-    }).addTo(map);
-
-    map.setView([<?= $ticket->getLocation()->getLatitude() . ',' . $ticket->getLocation()->getLongitude() ?>], 16);
-    L.marker([<?= $ticket->getLocation()->getLatitude() . ',' . $ticket->getLocation()->getLongitude() ?>]).addTo(map);
+<script src="/js/map.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $.ajax({
+        url: "<?= $this->url('ticket/view/export', ['id' => $ticket->getId(), 'export' => 'json']) ?>",
+        dataType: "json",
+        success: function (data) {
+            geojsonLayer.addData(data);
+            
+            map.fitBounds(geojsonLayer.getBounds());
+        }
+    });
 </script>

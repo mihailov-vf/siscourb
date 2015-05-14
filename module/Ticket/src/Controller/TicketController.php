@@ -66,10 +66,13 @@ class TicketController extends AbstractActionController
             $filter = array(
                 'id' => $id
             );
+            $tickets = $this->ticketMapper->findBy($filter);
+        } else {
+            $tickets = $this->ticketMapper->findAll();
         }
 
-        $tickets = $this->ticketMapper->getGeoLocationArrayList($filter);
-        $result = array('tickets' => $tickets);
+        $geoJsonConverter = $this->getServiceLocator()->get('Siscourb\Ticket\GeoJson\GeoJsonConverter');
+        $result = $geoJsonConverter->createPointFeatureCollection($tickets)->jsonSerialize();
 
         if ($format == 'json') {
             $json = new \Zend\View\Model\JsonModel($result);
@@ -85,6 +88,10 @@ class TicketController extends AbstractActionController
         $model = new ViewModel([
             'form' => $this->ticketForm
         ]);
+
+        if ($this->params()->fromQuery('ajax') == 1) {
+            $model->setTerminal(true);
+        }
 
         $prg = $this->prg('ticket/add');
 
@@ -108,7 +115,7 @@ class TicketController extends AbstractActionController
 
             $this->flashMessenger()->addSuccessMessage('Chamado registrado com sucesso!');
 
-            return $this->redirect()->toRoute('ticket');
+            return $this->redirect()->toRoute('ticket/view', array('id' => $ticket->getId()));
         }
 
         $this->flashMessenger()->addErrorMessage('Os dado providenciados não são válidos');
