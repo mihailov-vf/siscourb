@@ -4,6 +4,7 @@ return array(
     'service_manager' => array(
         'factories' => array(
             'Siscourb\Ticket\Mapper\TicketMapper' => 'Siscourb\Ticket\Mapper\TicketMapperFactory',
+            'Siscourb\Ticket\GeoJson\GeoJsonConverter' => 'Siscourb\Ticket\GeoJson\GeoJsonConverterFactory',
         ),
     ),
     'form_elements' => array(
