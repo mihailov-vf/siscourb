@@ -71,6 +71,7 @@ class GeoJsonConverter
         );
 
         $properties = array(
+            'id' => $ticket->getId(),
             'description' => $ticket->getDescription(),
             'creationDate' => $ticket->getCreationDate(),
             'issue' => $ticket->getIssue()->getName(),

@@ -103,6 +103,13 @@ var geojsonLayer = new L.geoJson(
             if (feature.properties) {
                 $.get('/js/template/view.html', function (template) {
                     
+                    if (feature.properties.status == 'open') {
+                        feature.properties.open = true;
+                    }
+                    if (feature.properties.status == 'closed') {
+                        feature.properties.closed = true;
+                    }
+                    
                     var popupString = Mustache.render(template, feature.properties);
                     
                     layer.bindPopup(popupString, {

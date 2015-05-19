@@ -7,4 +7,16 @@
         Created at: {{creationDate.date}}<br>
         Issue: {{issue}}<br>
     </div>
+    <div class="panel-footer">
+        <a href="/ticket/{{id}}/open" 
+           class="btn btn-default {{#open}}disabled{{/open}}" 
+           role="button">
+            Reopen
+        </a>
+        <a href="/ticket/{{id}}/close" 
+           class="btn btn-default {{#closed}}disabled{{/closed}}" 
+           role="button">
+            Close
+        </a>
+    </div>
 </div>

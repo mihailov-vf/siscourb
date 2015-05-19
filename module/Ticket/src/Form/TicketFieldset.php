@@ -63,9 +63,9 @@ class TicketFieldset extends Fieldset implements ObjectManagerAwareInterface
     {
         $this->addIdField();
         $this->addUserField();
-        $this->addDescriptionField();
         $this->addLocationFieldset();
         $this->addIssueField();
+        $this->addDescriptionField();
     }
 
     protected function addIdField()
@@ -88,7 +88,7 @@ class TicketFieldset extends Fieldset implements ObjectManagerAwareInterface
     {
         $this->add(array(
             'name' => 'description',
-            'type' => 'Zend\Form\Element\Text',
+            'type' => 'Zend\Form\Element\Textarea',
             'options' => array('label' => 'Descrição'),
         ));
     }
