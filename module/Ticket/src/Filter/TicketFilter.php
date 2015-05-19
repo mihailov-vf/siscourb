@@ -52,8 +52,7 @@ class TicketFilter extends InputFilter
                     'name'    => 'StringLength',
                     'options' => array(
                         'encoding' => 'UTF-8',
-                        'min'      => 1,
-                        'max'      => 255,
+                        'min'      => 3,
                     ),
                 ),
             ),
@@ -73,5 +72,7 @@ class TicketFilter extends InputFilter
             'name' => 'justification',
             'required' => false,
         ));
+        
+        $this->add(new LocationFilter(), 'location');
     }
 }

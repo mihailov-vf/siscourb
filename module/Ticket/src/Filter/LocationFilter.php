@@ -24,7 +24,60 @@ namespace Siscourb\Ticket\Filter;
  *
  * @author Mihailov Vasilievic Filho <mihailov.vf@gmail.com>
  */
-class LocationFilter
+class LocationFilter extends \Zend\InputFilter\InputFilter
 {
-    //put your code here
+
+    public function __construct()
+    {
+        $this->add(array(
+            'name' => 'latitude',
+            'required' => true,
+            'filters' => array(
+                array('name' => 'NumberParse')
+            ),
+            'validators' => array(
+                array(
+                    'name' => 'IsFloat',
+                ),
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'longitude',
+            'required' => true,
+            'filters' => array(
+                array('name' => 'NumberParse')
+            ),
+            'validators' => array(
+                array(
+                    'name' => 'IsFloat',
+                ),
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'address',
+            'required' => false,
+            'filters' => array(
+                array('name' => 'StripTags'),
+                array('name' => 'StringTrim'),
+                array(
+                    'name' => 'Alnum',
+                    'options' => array(
+                        'allowWhiteSpace' => true
+                    )
+                ),
+            ),
+            'validators' => array(
+                array(
+                    'name' => 'StringLength',
+                    'options' => array(
+                        'encoding' => 'UTF-8',
+                        'min' => 1,
+                        'max' => 255,
+                    ),
+                ),
+            ),
+        ));
+    }
 }
