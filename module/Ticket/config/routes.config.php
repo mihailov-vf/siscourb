@@ -50,6 +50,33 @@ return array(
                         ),
                         'may_terminate' => true,
                     ),
+                    'status-change' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/:id/:status',
+                            'constraints' => array(
+                                'id' => '[0-9]+',
+                                'status' => 'open|close'
+                            ),
+                            'defaults' => array(
+                                'action' => 'status-change',
+                            ),
+                        ),
+                        'may_terminate' => true,
+                    ),
+                    'add-note' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/:id/add-note',
+                            'constraints' => array(
+                                'id' => '[0-9]+'
+                            ),
+                            'defaults' => array(
+                                'action' => 'add-note',
+                            ),
+                        ),
+                        'may_terminate' => true,
+                    ),
                     'view' => array(
                         'type' => 'Segment',
                         'options' => array(

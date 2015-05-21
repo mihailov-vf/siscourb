@@ -19,10 +19,15 @@
 
 namespace Siscourb\Ticket\Controller;
 
+use Siscourb\Ticket\Entity\Note;
+use Siscourb\Ticket\Entity\Ticket;
+use Siscourb\Ticket\Filter\NoteFilter;
+use Siscourb\Ticket\Form\NoteForm;
 use Siscourb\Ticket\Form\TicketForm;
 use Siscourb\Ticket\Mapper\TicketMapperInterface;
 use Zend\Http\PhpEnvironment\Response;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\JsonModel;
 use Zend\View\Model\ViewModel;
 
 /**
@@ -57,7 +62,7 @@ class TicketController extends AbstractActionController
             $formManager = $this->getServiceLocator()->get('FormElementManager');
             $this->ticketForm = $formManager->get('Siscourb\Ticket\Form\TicketForm');
         }
-        
+
         return $this->ticketForm;
     }
 
@@ -82,12 +87,12 @@ class TicketController extends AbstractActionController
         $result = $geoJsonConverter->createPointFeatureCollection($tickets)->jsonSerialize();
 
         if ($format == 'json') {
-            $json = new \Zend\View\Model\JsonModel($result);
+            $json = new JsonModel($result);
 
             return $json;
         }
 
-        return new \Zend\View\Model\JsonModel(array('error' => "Not supported '$format' format."));
+        return new JsonModel(array('error' => "Not supported '$format' format."));
     }
 
     public function addAction()
@@ -125,13 +130,8 @@ class TicketController extends AbstractActionController
             return $this->redirect()->toRoute('ticket/view', array('id' => $ticket->getId()));
         }
 
-        $this->flashMessenger()->addErrorMessage('Os dado providenciados não são válidos');
+        $this->flashMessenger()->addErrorMessage('Os dados providenciados não são válidos');
         return $model;
-    }
-
-    public function createAction()
-    {
-        
     }
 
     public function viewAction()
@@ -149,7 +149,17 @@ class TicketController extends AbstractActionController
 
     public function addNoteAction()
     {
-        
+        $id = $this->params()->fromRoute('id');
+
+        $ticket = $this->ticketMapper->findOneById($id);
+        $note = $this->createNoteForTicket($ticket);
+        $ticket->addNote($note);
+
+        $this->ticketMapper->update($ticket);
+
+        return new JsonModel(
+            ['message' => 'Comentário adicionado com sucesso.']
+        );
     }
 
     public function editAction()
@@ -157,13 +167,50 @@ class TicketController extends AbstractActionController
         
     }
 
-    public function saveAction()
+    public function statusChangeAction()
     {
-        
+        $id = $this->params()->fromRoute('id');
+        $status = $this->params()->fromRoute('status');
+
+        $ticket = $this->ticketMapper->findOneById($id);
+        $justification = $this->createNoteForTicket($ticket);
+        $ticket->$status($justification);
+
+        $this->ticketMapper->update($ticket);
+
+        return new JsonModel(
+            ['message' => 'Status alterado com sucesso.']
+        );
     }
 
-    public function closeAction()
+    private function createNoteForTicket(Ticket $ticket)
     {
-        
+        $noteData = $this->params()->fromPost();
+
+        $inputFilter = new NoteFilter();
+        $inputFilter->setData($noteData['Note']);
+
+        if (!$inputFilter->isValid()) {
+            $this->getResponse()->setStatusCode(403);
+            $model = new JsonModel(
+                [
+                'error' => 'É necessário informar uma descrição e um título da mensagem.',
+                'messages' => $inputFilter->getMessages()
+                ]
+            );
+
+            $this->response->setContent($model);
+            return $this->dispatch($this->request, $this->response);
+        }
+
+        $noteFilteredData = $inputFilter->getValues();
+
+        $user = $this->getServiceLocator()->get('zfcuser_auth_service')->getIdentity();
+
+        $note = new Note($ticket, $user);
+        $note->setTitle($noteFilteredData['title']);
+        $note->setDescription($noteFilteredData['description']);
+
+        return $note;
     }
 }

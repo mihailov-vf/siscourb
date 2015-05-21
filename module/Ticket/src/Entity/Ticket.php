@@ -136,7 +136,7 @@ class Ticket
      * @return void
      * @throws \Exception
      */
-    public function open()
+    public function open(Note $justification = null)
     {
         if ($this->status == self::STATUS_OPEN) {
             throw new \Exception('Cannot reopen a non-closed Ticket.');
@@ -144,17 +144,23 @@ class Ticket
         if ($this->status == self::STATUS_CLOSED) {
             $this->closeDate = null;
             $this->reopenDate = new DateTime();
+            $this->addJustification($justification);
         }
+        
         $this->status = self::STATUS_OPEN;
     }
 
     /**
      * @return void
      */
-    public function close()
+    public function close(Note $justification)
     {
+        if ($this->status == self::STATUS_CLOSED) {
+            throw new \Exception('Cannot close a non-open Ticket.');
+        }
         $this->status = self::STATUS_CLOSED;
         $this->closeDate = new DateTime();
+        $this->addJustification($justification);
     }
 
     //Getters and Setters
@@ -268,5 +274,16 @@ class Ticket
     public function setIssue(Issue $issue)
     {
         $this->issue = $issue;
+    }
+
+    public function addNote(Note $note)
+    {
+        $this->notes->add($note);
+    }
+
+    private function addJustification(Note $justification)
+    {
+        $this->addNote($justification);
+        $this->justification = $justification;
     }
 }
