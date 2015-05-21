@@ -1,17 +1,23 @@
 <style>
     #map {
-        height: 150px;
+        height: 180px;
         width: 100%;
     }
 </style>
 
 <div class="row">
-    <div class="col-md-5">
+    <div class="col">
         <div id="map"></div>
     </div>
+    <h2>Chamado #<?= $ticket->getId() ?></h2>
+</div>
 
-    <div class="col-md-7">
-        <h2><?= $this->escapeHtml($ticket->getDescription()) ?></h2>
+<div class="row">
+    <div class="col col-md-6">
+        <h4>Descrição:</h4>
+        <span><?= $this->escapeHtml($ticket->getDescription()) ?></span>
+    </div>
+    <div class="col col-md-6">
         <time class="comment-date" datetime="<?=
         $this->dateFormat(
             $ticket->getCreationDate(), IntlDateFormatter::SHORT, // date
@@ -29,17 +35,44 @@
             <i class="fa fa-exclamation-circle"></i>
             <?= $this->escapeHtml($ticket->getIssue()->getName()) ?>
         </div>
+        <?php if ($ticket->getStatus() == 'closed'): ?>
+            <button type="button"
+                    class="btn btn-info"
+                    data-toggle="modal"
+                    data-title="Informe a justificativa para reabrir o chamado."
+                    data-id="<?= $ticket->getId() ?>"
+                    data-operation="open"
+                    data-content="note"
+                    data-target="#mainModal">
+                Reabrir
+            </button>
+        <?php else : ?>
+            <button type="button"
+                    class="btn btn-danger"
+                    data-toggle="modal"
+                    data-title="Informe a justificativa para encerrar o chamado."
+                    data-id="<?= $ticket->getId() ?>"
+                    data-operation="close"
+                    data-content="note"
+                    data-target="#mainModal">
+                Fechar
+            </button>
+        <?php endif; ?>
+        <button type="button"
+                class="btn btn-success"
+                data-toggle="modal"
+                data-title="Adicione um comentário."
+                data-id="<?= $ticket->getId() ?>"
+                data-operation="add-note"
+                data-content="note"
+                data-target="#mainModal">
+            Comente
+        </button>
     </div>
 </div>
 
 <?php
-echo $this->partial('comment/list.phtml', array(
-    'notes' => $ticket->getNotes()
-));
-?>
-
-<?php
-echo $this->partial('comment/box.phtml');
+echo $this->partial('comment/list.phtml', array('notes' => $ticket->getNotes()));
 ?>
 
 <script src="/js/map.js" type="text/javascript"></script>
@@ -49,9 +82,10 @@ echo $this->partial('comment/box.phtml');
         dataType: "json",
         success: function (data) {
             geojsonLayer.addData(data);
-            
+
             map.addLayer(geojsonLayer);
-            map.fitBounds(geojsonLayer.getBounds(),{maxZoom:16});
+            map.fitBounds(geojsonLayer.getBounds(), {maxZoom: 17});
         }
     });
 </script>
+<script src="/js/note-modal.js"></script>

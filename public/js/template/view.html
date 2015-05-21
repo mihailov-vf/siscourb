@@ -1,22 +1,45 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">{{description}}</h3>
+        <h4 class="panel-title">
+            <a href="/ticket/view/{{id}}">Chamado #{{id}} - {{issue}}</a>
+        </h4>
     </div>
     <div class="panel-body">
-        Status: {{status}}<br>
-        Created at: {{creationDate.date}}<br>
-        Issue: {{issue}}<br>
+        <i class="fa fa-shield"> Status: </i> 
+        <span class="
+              {{#open}}danger{{/open}}
+              {{#closed}}success{{/closed}}">
+            {{status}}
+        </span>
+        <br>
+        <i class="fa fa-clock-o"> Criado em: </i> {{creationDate.date}}
+        <br>
+            <i class="fa fa-info"> Descrição: </i>  {{description}}
     </div>
     <div class="panel-footer">
-        <a href="/ticket/{{id}}/open" 
-           class="btn btn-default {{#open}}disabled{{/open}}" 
-           role="button">
-            Reopen
-        </a>
-        <a href="/ticket/{{id}}/close" 
-           class="btn btn-default {{#closed}}disabled{{/closed}}" 
-           role="button">
-            Close
-        </a>
+        {{#closed}}
+        <button type="button"
+                class="btn btn-info"
+                data-toggle="modal"
+                data-title="Informe a justificativa para reabrir o chamado."
+                data-id="{{id}}"
+                data-operation="open"
+                data-content="justification"
+                data-target="#mainModal">
+            Reabrir
+        </button>
+        {{/closed}}
+        {{#open}}
+        <button type="button"
+                class="btn btn-danger"
+                data-toggle="modal"
+                data-title="Informe a justificativa para encerrar o chamado."
+                data-id="{{id}}"
+                data-operation="close"
+                data-content="justification"
+                data-target="#mainModal">
+            Fechar
+        </button>
+        {{/open}}
     </div>
 </div>

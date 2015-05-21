@@ -1,0 +1,23 @@
+<form name="NoteForm">
+    <fieldset>
+        <div class="form-group">
+            <label for="title" class="control-label">Título:</label>
+            <input name="Note[title]"
+                   id="title"
+                   class="form-control"
+                   placeholder="Título..."
+                   type="text">
+        </div>
+        <div class="form-group">
+            <label for="description" class="control-label">Descrição:</label>
+            <textarea name="Note[description]"
+                      id="description"
+                      class="form-control"
+                      placeholder="Comentário.."></textarea>
+        </div>
+    </fieldset>
+</form>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+    <button type="button" class="btn btn-primary" id="submitButton">Confirmar</button>
+</div>
