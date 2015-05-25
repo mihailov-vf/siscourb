@@ -12,11 +12,22 @@ $('#mainModal').on('show.bs.modal', function (event) {
 
         $('#submitButton').on('click', function () {
             var url = '/ticket/' + id + '/' + operation;
-                    $.ajax({
-                        type: 'POST',
-                        url: url,
-                        data: $('form[name="NoteForm"]').serialize()
-                    });
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: $('form[name="NoteForm"]').serialize()
+            }).done(function (data) {
+                $('.message').addClass('text-success')
+                        .hide()
+                        .html(data.message)
+                        .fadeIn(400)
+                        .delay(1000)
+                        .fadeOut(1000, function () {
+                            $(window.document.location).attr('href', '/ticket/view/' + id);
+                        });
+            }).fail(function (request) {
+                $('.message').addClass('text-danger').html(request.responseJSON.message)
+            });
         });
     });
 });

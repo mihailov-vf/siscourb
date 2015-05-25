@@ -153,6 +153,10 @@ class TicketController extends AbstractActionController
 
         $ticket = $this->ticketMapper->findOneById($id);
         $note = $this->createNoteForTicket($ticket);
+        if (!$note instanceof Note) {
+            return $note;
+        }
+
         $ticket->addNote($note);
 
         $this->ticketMapper->update($ticket);
@@ -174,6 +178,10 @@ class TicketController extends AbstractActionController
 
         $ticket = $this->ticketMapper->findOneById($id);
         $justification = $this->createNoteForTicket($ticket);
+        if (!$justification instanceof Note) {
+            return $justification;
+        }
+
         $ticket->$status($justification);
 
         $this->ticketMapper->update($ticket);
@@ -194,13 +202,12 @@ class TicketController extends AbstractActionController
             $this->getResponse()->setStatusCode(403);
             $model = new JsonModel(
                 [
-                'error' => 'É necessário informar uma descrição e um título da mensagem.',
-                'messages' => $inputFilter->getMessages()
+                'message' => 'É necessário informar um título e uma descrição da mensagem.',
+                'error_messages' => $inputFilter->getMessages()
                 ]
             );
 
-            $this->response->setContent($model);
-            return $this->dispatch($this->request, $this->response);
+            return $model;
         }
 
         $noteFilteredData = $inputFilter->getValues();
