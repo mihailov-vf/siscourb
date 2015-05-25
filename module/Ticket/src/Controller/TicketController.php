@@ -73,6 +73,24 @@ class TicketController extends AbstractActionController
         return array('tickets' => $tickets);
     }
 
+    public function myTicketsAction()
+    {
+        $user = $this->getServiceLocator()->get('zfcuser_auth_service')->getIdentity();
+        if (!$user) {
+            $this->flashMessenger()
+                ->addSuccessMessage('Você precisa estar logado para acessar esta página!');
+
+            $this->redirect()->toRoute('user/login');
+        }
+
+        $tickets = $this->ticketMapper->findByUser($user);
+
+        $model = new ViewModel(array('tickets' => $tickets));
+        $model->setTemplate('ticket/ticket/list');
+        
+        return $model;
+    }
+
     public function exportAction()
     {
         $format = $this->params()->fromRoute('export');

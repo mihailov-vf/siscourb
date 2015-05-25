@@ -15,6 +15,16 @@ return array(
                 ),
                 'may_terminate' => true,
                 'child_routes' => array(
+                    'my-tickets' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/my-tickets',
+                            'defaults' => array(
+                                'action' => 'my-tickets',
+                            ),
+                        ),
+                        'may_terminate' => true,
+                    ),
                     'list' => array(
                         'type' => 'Segment',
                         'options' => array(
