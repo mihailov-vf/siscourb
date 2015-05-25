@@ -76,6 +76,7 @@ $settings = array(
      */
     'user_login_widget_view_template' => 'user/user/login.phtml',
 
+    'login_redirect_route' => 'siscourb',
 
     /**
      * Logout Redirect Route
