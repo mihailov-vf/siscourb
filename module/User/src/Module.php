@@ -42,6 +42,11 @@ class Module
             $controller = $e->getTarget();
             $controller->layout('layout/user');
         }, 100);
+        
+        $sharedEvents->attach('LdcUserProfile\Controller\ProfileController', 'dispatch', function (EventInterface $e) {
+            $controller = $e->getTarget();
+            $controller->layout('layout/user');
+        }, 100);
     }
 
     public function onBootstrap(MvcEvent $e)

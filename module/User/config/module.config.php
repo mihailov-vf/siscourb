@@ -7,8 +7,15 @@ return array(
         ),
         'template_path_stack' => array(
             'zfc-user' => __DIR__ . '/../view',
+            'ldc-user-profile' => __DIR__ . '/../view',
         ),
     ),
+    'service_manager' => array(
+        'aliases' => array(
+            'translator' => 'MvcTranslator',
+        ),
+    ),
+    
     //doctrine config
     'doctrine' => array(
         'driver' => array(
@@ -45,7 +52,7 @@ return array(
             ),
         ),
         'resource_providers' => array(
-            \BjyAuthorize\Provider\Resource\Config::class => array(
+            'BjyAuthorize\Provider\Resource\Config' => array(
                 'menu' => array(),
             ),
         ),
@@ -61,7 +68,18 @@ return array(
         'guards' => array(
             'BjyAuthorize\Guard\Controller' => array(
                 array('controller' => 'zfcuser', 'roles' => array()),
+                array('controller' => 'LdcUserProfile\Controller\Profile', 'roles' => array('user'))
             )
         )
     ),
+    'translator' => array(
+        'locale' => 'pt_BR',
+        'translation_file_patterns' => array(
+            array(
+                'type'     => 'gettext',
+                'base_dir' => __DIR__ . '/../language',
+                'pattern'  => '%s.mo',
+            ),
+        ),
+    )
 );

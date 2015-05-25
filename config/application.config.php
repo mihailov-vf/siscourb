@@ -4,7 +4,6 @@ return array(
     'modules' => array(
         'ZFTool',
         'ZendDeveloperTools',
-        'AssetsBundle',
         'TwbBundle',
         'DoctrineModule',
         'DoctrineORMModule',
@@ -12,6 +11,7 @@ return array(
         'ZfcBase',
         'ZfcUser',
         'ZfcUserDoctrineORM',
+        'LdcUserProfile',
         'BjyAuthorize',
         'MaglMarkdown',
         
@@ -37,7 +37,7 @@ return array(
         // modules are loaded. These effectively override configuration
         // provided by modules themselves. Paths may use GLOB_BRACE notation.
         'config_glob_paths' => array(
-            'config/autoload/{,*.}{global,local}.php',
+            'config/autoload/{,*.}{global,local,debug}.php',
         ),
 
         // Whether or not to enable a configuration cache.

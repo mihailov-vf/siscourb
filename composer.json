@@ -32,17 +32,13 @@
         "neilime/zf2-twb-bundle": "2.*",
         "neilime/zf2-assets-bundle": "dev-master",
         "maglnet/magl-markdown": "~1.1",
-        "jmikola/geojson": "@stable"
+        "jmikola/geojson": "@stable",
+        
+        "adamlundrigan/ldc-user-profile": "1.*@stable"
     },
     "require-dev": {
         "phpunit/phpunit": "@stable",
         "mockery/mockery": "dev-master",
-        
-        "behat/behat": "dev-master",
-        "behat/mink": "~1.6",
-        "behat/mink-extension": "~2.0",
-        "behat/mink-goutte-driver": "*",
-        "behat/mink-selenium2-driver": "*",
         
         "satooshi/php-coveralls": "@dev",
 
