@@ -55,7 +55,7 @@ class TicketFieldsetTest extends \PHPUnit_Framework_TestCase
         //Elements
         $this->assertInstanceOf('Zend\Form\Element\Hidden', $this->ticketFieldset->get('id'));
         $this->assertInstanceOf('Zend\Form\Element\Hidden', $this->ticketFieldset->get('user'));
-        $this->assertInstanceOf('Zend\Form\Element\Text', $this->ticketFieldset->get('description'));
+        $this->assertInstanceOf('Zend\Form\Element\Textarea', $this->ticketFieldset->get('description'));
         $this->assertInstanceOf('Siscourb\Ticket\Form\LocationFieldset', $this->ticketFieldset->get('location'));
         $this->assertInstanceOf('DoctrineModule\Form\Element\ObjectSelect', $this->ticketFieldset->get('issue'));
     }

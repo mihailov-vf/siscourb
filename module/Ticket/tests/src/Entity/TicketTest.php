@@ -57,21 +57,30 @@ class TicketTest extends \PHPUnit_Framework_TestCase
         $this->assertAttributeEquals('open', 'status', $this->ticket);
         $this->assertAttributeEmpty('closeDate', $this->ticket);
         
-        $this->ticket->close();
+        $justification = \Mockery::mock('Siscourb\Ticket\Entity\Note');
+        
+        $this->ticket->close($justification);
         $this->assertAttributeEquals('closed', 'status', $this->ticket);
         $this->assertAttributeInstanceOf('DateTime', 'closeDate', $this->ticket);
+        
+        $this->assertAttributeSame($justification, 'justification', $this->ticket);
     }
     
     public function testReopenClosedTicket()
     {
-        $this->ticket->close();
+        $justification = \Mockery::mock('Siscourb\Ticket\Entity\Note');
+        $this->ticket->close($justification);
         $this->assertAttributeEquals('closed', 'status', $this->ticket);
         $this->assertAttributeInstanceOf('DateTime', 'closeDate', $this->ticket);
         
-        $this->ticket->open();
+        $justification2 = \Mockery::mock('Siscourb\Ticket\Entity\Note');
+        
+        $this->ticket->open($justification2);
         $this->assertAttributeEquals('open', 'status', $this->ticket);
         $this->assertAttributeInstanceOf('DateTime', 'reopenDate', $this->ticket);
         $this->assertAttributeEmpty('closeDate', $this->ticket);
+        
+        $this->assertAttributeSame($justification2, 'justification', $this->ticket);
     }
     
     /**
