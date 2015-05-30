@@ -22,7 +22,6 @@ namespace Siscourb\Ticket\Controller;
 use Siscourb\Ticket\Entity\Note;
 use Siscourb\Ticket\Entity\Ticket;
 use Siscourb\Ticket\Filter\NoteFilter;
-use Siscourb\Ticket\Form\NoteForm;
 use Siscourb\Ticket\Form\TicketForm;
 use Siscourb\Ticket\Mapper\TicketMapperInterface;
 use Zend\Http\PhpEnvironment\Response;
