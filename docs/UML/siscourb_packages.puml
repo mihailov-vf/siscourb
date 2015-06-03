@@ -17,6 +17,17 @@ package Siscourb{
     package Siscourb.Ticket
 }
 
+actor Geoprocessing <<Service>>
+actor OAuth <<Service>>
+
+package GeoJson
+
+GeoJson <- Siscourb.Ticket
+
+Geoprocessing -- Siscourb.Application
+
+Siscourb.Application --> Siscourb.Ticket
+
 package Zend
 
 package Doctrine.ORM_Module
@@ -24,6 +35,8 @@ package Doctrine.ORM_Module
 package Doctrine
 
 database "SiscourbDB"
+
+Siscourb --> Doctrine :use service
 
 Doctrine --> SiscourbDB
 
@@ -40,7 +53,7 @@ BjyAuthorize --> ZfcUser :extends
 ZfcUser --> Doctrine.ORM_Module
 BjyAuthorize --> Doctrine.ORM_Module
 
-Siscourb ---> BjyAuthorize :use service
+Siscourb --> BjyAuthorize :use service
 Siscourb.User --> ZfcUser :extends
 
 @enduml

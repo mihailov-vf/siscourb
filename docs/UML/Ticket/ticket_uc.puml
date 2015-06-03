@@ -1,0 +1,22 @@
+@startuml
+
+:Guest:
+:User:
+
+Guest <|-- User
+
+Guest - (List Tickets)
+Guest -- (View Ticket)
+User -- (View Ticket)
+User -- (Create Ticket)
+
+(View Ticket) <.. (Add Note) :extends
+(View Ticket) <.. (Rate Ticket) :extends
+(View Ticket) <.. (Close Ticket) :extends
+(View Ticket) <.. (Open Ticket) :extends
+
+note "As ações ligadas a visualização dos chamados\nrequerem autorização a nível de usuário" as N
+
+N -- (View Ticket)
+
+@enduml

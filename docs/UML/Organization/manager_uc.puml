@@ -1,9 +1,0 @@
-@startuml
-
-:Manager:
-
-Manager --> (Organization profile)
-(Organization profile) ..> (Organization resume) :includes
-(Organization profile) ..> (Edit Profile) :extends
-
-@enduml

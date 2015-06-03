@@ -1,0 +1,72 @@
+@startuml
+
+left to right direction
+skinparam packageStyle rect
+
+title SisCoUrb Use Cases
+
+
+:Guest:
+:User:
+:Admin:
+:Manager:
+:Auth: <<Service>>
+:Geoprocessing: <<Service>>
+
+Guest <|- User
+
+User <|- Manager
+User <|- Admin
+
+rectangle Siscourb.User {
+  Guest --- (User Signup)
+  Guest - (External Signup)
+  Guest - (Login)
+
+  (External Authentication) - Auth
+
+
+  (External Authentication) .> (Login) : extends
+
+  (External Signup) .> (External Authentication) : includes
+
+  User - (Logout)
+}
+
+rectangle Siscourb.Ticket {
+  Guest -- (List Tickets)
+  Guest -- (View Ticket)
+
+  User -- (Create Ticket)
+  User -- (List my Tickets)
+  User -- (Add Ticket Note)
+  User -- (Ticket Status)
+
+  (Add Ticket Note) <. (Ticket Status) : includes
+}
+
+rectangle Siscourb.Application {
+  Guest -- (View About Page)
+  Guest -- (View Contribute Page)
+  Guest -- (Map)
+
+  User -- (Map)
+
+  Geoprocessing -- (Map)
+
+  (Map) ..> (List Tickets) : includes
+  (Map) ..> (View Ticket) : includes
+
+  (Map) <.. (Create Ticket) : extends
+  (Map) <.. (Ticket Status) : extends
+}
+
+User -- (Groups Cases)
+Manager -- (Groups Cases)
+
+User -- (Issue Management Cases)
+Manager -- (Issue Management Cases)
+
+Admin -- (Admin Cases)
+
+@enduml

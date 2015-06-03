@@ -1,0 +1,31 @@
+@startuml
+
+title Group and Organization Use Cases
+
+:Guest:
+:User:
+:Manager:
+
+Guest <|-- User
+User <|-- Manager
+
+Guest --> (Group list)
+
+Guest --> (Group profile)
+
+(Group profile) <.. (Group Rate) :extends
+
+User --> (Create Organization Request)
+
+User --> (Create Group)
+(Create Group) <.. (Create Organization Request) :includes
+
+Manager --> (Group profile)
+(Group profile) .> (Group Tickets Resume) :includes
+(Group profile) <.. (Edit Profile) :extends
+
+note left of (Group Rate) : Somente usuários acima\npodem avaliar os grupos
+
+note left of (Edit Profile) : Somente os gestores\npodem editar o perfil do grupo
+
+@enduml

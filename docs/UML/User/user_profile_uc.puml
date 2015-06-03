@@ -4,14 +4,31 @@ title User Profile Use Cases
 
 :User:
 
+:Authentication: <<Service>>
+:Authorization: <<Service>>
+
 User --> (Login)
-User --> (Register)
+User --> (Signup)
+User --> (External Signup)
+User --> (View Profile)
 User --> (Edit Profile)
 User --> (Delete Account)
+User --> (Logout)
 
-(Login) ..> (Authentication) :include
+(Login) -- Authentication
+(Logout) -- Authentication
+(External Signup) -- Authentication
 
-(Edit Profile) ..> (Authorization) :include
-(Delete Account) ..> (Authorization) :include
+(Edit Profile) -- Authorization
+(Delete Account) -- Authorization
+
+note "Serviços internos executados pelos\nmódulos ZfcUser e BjyAuthorize." as N
+
+Authentication . N
+N . Authorization
+
+note "A autenticação pode ser provida por um\nserviço externo ou banco de dados." as N2
+
+Authentication .down. N2
 
 @enduml

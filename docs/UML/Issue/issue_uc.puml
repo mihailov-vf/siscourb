@@ -1,0 +1,26 @@
+@startuml
+
+title  Issue Management Cases
+
+:User:
+:Admin:
+
+User <|-- Admin
+
+User --> (Create Category)
+User --> (Edit Category)
+
+(Delete Category) ..> (Cascade Change Issue Category) :include
+(Cascade Change Issue Category) ..> (Change Issue Category) :include
+
+User --> (Create Issue)
+User --> (Edit Issue)
+User --> (Aprove Issue)
+User --> (Disaprove Issue)
+
+Admin --> (Delete Category)
+Admin --> (Delete Issue)
+
+(Edit Issue) <.. (Change Issue Category) :extends
+
+@enduml
