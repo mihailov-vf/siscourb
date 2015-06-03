@@ -14,7 +14,6 @@
         "psr-4": {
             "Siscourb\\Application\\": "module/Application/src",
             "Siscourb\\User\\": "module/User/src",
-            "Siscourb\\Organization\\": "module/Organization/src",
             "Siscourb\\Issue\\": "module/Issue/src",
             "Siscourb\\Ticket\\": "module/Ticket/src"
         }
@@ -28,28 +27,27 @@
         
         "zf-commons/zfc-user-doctrine-orm": "@stable",
         "bjyoungblood/bjy-authorize": "@stable",
+        "adamlundrigan/ldc-user-profile": "1.*@stable",
         
         "neilime/zf2-twb-bundle": "2.*",
-        "neilime/zf2-assets-bundle": "dev-master",
-        "maglnet/magl-markdown": "~1.1",
-        "jmikola/geojson": "@stable",
         
-        "adamlundrigan/ldc-user-profile": "1.*@stable"
+        "maglnet/magl-markdown": "~1.1",
+        "jmikola/geojson": "@stable"
     },
     "require-dev": {
         "phpunit/phpunit": "@stable",
         "mockery/mockery": "dev-master",
-        
-        "satooshi/php-coveralls": "@dev",
+        "phpunit/php-code-coverage": "@stable",        
 
         "zendframework/zftool": "dev-master",
         "zendframework/zend-developer-tools": "dev-master",
         "ocramius/ocra-service-manager": "dev-master", 
-        "sensiolabs/security-checker": "dev-master",
         "san/san-session-toolbar": "dev-master",
         "snapshotpl/zf-snap-event-debugger": "dev-master",
         "jhuet/zdt-logger-module": "dev-master",
         
-        "phpunit/php-code-coverage": "@stable"
+        "sensiolabs/security-checker": "dev-master",
+        
+        "satooshi/php-coveralls": "@dev"
     }
 }

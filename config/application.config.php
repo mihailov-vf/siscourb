@@ -17,7 +17,6 @@ return array(
         
         'Siscourb\Application',
         'Siscourb\User',
-        'Siscourb\Organization',
         'Siscourb\Issue',
         'Siscourb\Ticket',
     ),

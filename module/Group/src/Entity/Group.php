@@ -17,20 +17,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Siscourb\Organization\Entity;
+namespace Siscourb\Group\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Description of Organization
+ * Description of Group
  *
  * @author Mihailov Vasilievic Filho
  *
  * @ORM\Entity
- * @ORM\Table(name="organizations")
+ * @ORM\Table(name="groups")
  */
-class Organization
+class Group
 {
 
     /**
@@ -49,16 +48,9 @@ class Organization
      */
     private $name;
 
-    /**
-     * @var ArrayCollection
-     *
-     * @ORM\OneToMany(targetEntity="Contact",  mappedBy="organization", cascade={"all"})
-     */
-    private $contacts;
-
     public function __construct()
     {
-        $this->contacts = new ArrayCollection();
+        
     }
 
     /**
@@ -78,14 +70,6 @@ class Organization
     }
 
     /**
-     * @return ArrayCollection
-     */
-    public function getContacts()
-    {
-        return $this->contacts;
-    }
-
-    /**
      * @param int $id
      */
     public function setId($id)
@@ -99,14 +83,5 @@ class Organization
     public function setName($name)
     {
         $this->name = $name;
-    }
-
-    /**
-     * @param Contact $contact
-     */
-    public function addContact(Contact $contact)
-    {
-        $contact->setOrganization($this);
-        $this->contacts->add($contact);
     }
 }

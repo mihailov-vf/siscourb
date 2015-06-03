@@ -17,22 +17,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Siscourb\Organization\Fixture;
+namespace Siscourb\Group\Entity;
 
-use Doctrine\Common\DataFixtures\AbstractFixture;
-use Doctrine\Common\Persistence\ObjectManager;
-use Siscourb\Organization\Entity\Contact;
-use Siscourb\Organization\Entity\Organization;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Description of ProductionOrganizationFixture
+ * Description of Organization
  *
- * @author Mihailov Vasilievic Filho <mihailov.vf@gmail.com>
+ * @author Mihailov Vasilievic Filho
+ *
  */
-class ProductionOrganizationFixture extends AbstractFixture
+class Organization extends Group
 {
-    public function load(ObjectManager $manager)
-    {
-        
-    }
+    
 }

@@ -17,35 +17,35 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Siscourb\Organization\Fixture;
+namespace Siscourb\Group\Fixture;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use Siscourb\Organization\Entity\Contact;
-use Siscourb\Organization\Entity\Organization;
+use Siscourb\Group\Entity\Contact;
+use Siscourb\Group\Entity\Group;
 
 /**
- * Description of DevelopmentOrganizationFixture
+ * Description of DevelopmentGroupFixture
  *
  * @author Mihailov Vasilievic Filho <mihailov.vf@gmail.com>
  */
-class DevelopmentOrganizationFixture extends AbstractFixture
+class DevelopmentGroupFixture extends AbstractFixture
 {
 
     public function load(ObjectManager $manager)
     {
-        $organization = new Organization();
-        $organization->setName('Teste');
+        $group = new Group();
+        $group->setName('Teste');
 
         $contact = new Contact();
         $contact->setType('email');
         $contact->setValue('mihailov.vf@gmail.com');
         $contact->setNotes('Contato para testes de envio de email.');
 
-        $organization->addContact($contact);
+        $group->addContact($contact);
 
-        $manager->persist($organization);
-        $manager->flush($organization);
+        $manager->persist($group);
+        $manager->flush($group);
         $manager->flush($contact);
     }
 }
