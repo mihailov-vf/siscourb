@@ -1,0 +1,23 @@
+@startuml
+
+title Map Use Cases
+
+:Guest:
+:User:
+:Geoprocessing: <<Service>>
+
+Guest <|-- User
+
+Guest -- (Map)
+
+  User -- (Map)
+
+  Geoprocessing -- (Map)
+
+  (Map) ..> (List Tickets) : includes
+  (Map) ..> (View Ticket) : includes
+
+  (Map) <.. (Create Ticket) : extends
+  (Map) <.. (Ticket Status) : extends
+
+@enduml
